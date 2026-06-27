@@ -7,7 +7,7 @@ A .NET Standard 2.0 library for interacting with ONVIF-compliant devices (such a
 
 ## Features
 
-- Pure .NET Standard 2.0 implementation (compatible with .NET 8 and other platforms)
+- Pure .NET Standard 2.0 implementation
 - No WCF dependencies or bindings
 - Supports ONVIF Device, Media, Imaging, and PTZ services
 

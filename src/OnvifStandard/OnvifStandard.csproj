@@ -1,12 +1,24 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <LangVersion>9</LangVersion>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<LangVersion>9</LangVersion>
+	</PropertyGroup>
+	<PropertyGroup>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageProjectUrl>https://github.com/megedsh/OnvifStandard</PackageProjectUrl>		
+		<PackageTags>Onvif Standard Camera Cameras ONVIF rtsp onvif-client onvif-camera onvif-ptz onvif-events ptz</PackageTags>
+		<PackageIcon>Icon.png</PackageIcon>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="SoapHttpClient" Version="3.0.0" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Include="..\..\README.md" Pack="true" PackagePath=""/>		
+		<None Include="..\..\Icon.Png" Pack="true" PackagePath=""/>		
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="SoapHttpClient" Version="3.0.0" />
+	</ItemGroup>
 
 </Project>
