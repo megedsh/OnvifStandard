@@ -1,4 +1,5 @@
 [![License](https://img.shields.io/github/license/megedsh/OnvifStandard.svg)](https://github.com/megedsh/OnvifStandard/blob/master/LICENSE.txt) 
+[![NuGet](https://img.shields.io/nuget/v/OnvifStandard.svg)](https://nuget.org/packages/OnvifStandard) 
 
 <img src="Icon.png" width="300">
 
