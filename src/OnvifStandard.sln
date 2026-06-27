@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.37328.6
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Wsdl", "Wsdl", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+	ProjectSection(SolutionItems) = preProject
+		..\wsdl\code_generation.md = ..\wsdl\code_generation.md
+		..\wsdl\devicemgmt.wsdl = ..\wsdl\devicemgmt.wsdl
+		..\wsdl\imaging.wsdl = ..\wsdl\imaging.wsdl
+		..\wsdl\media.wsdl = ..\wsdl\media.wsdl
+		..\wsdl\onvif.xsd = ..\wsdl\onvif.xsd
+		..\wsdl\ptz.wsdl = ..\wsdl\ptz.wsdl
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnvifTests", "OnvifTests\OnvifTests.csproj", "{291B2F10-0D22-4D83-8B63-0A043FCD6B1C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnvifStandard", "OnvifStandard\OnvifStandard.csproj", "{3D177485-53FE-3A9D-AF29-37785D8C394C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{291B2F10-0D22-4D83-8B63-0A043FCD6B1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{291B2F10-0D22-4D83-8B63-0A043FCD6B1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{291B2F10-0D22-4D83-8B63-0A043FCD6B1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{291B2F10-0D22-4D83-8B63-0A043FCD6B1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D177485-53FE-3A9D-AF29-37785D8C394C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D177485-53FE-3A9D-AF29-37785D8C394C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D177485-53FE-3A9D-AF29-37785D8C394C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D177485-53FE-3A9D-AF29-37785D8C394C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5D372E4D-7322-4BFD-81A6-828E9500B897}
+	EndGlobalSection
+EndGlobal
