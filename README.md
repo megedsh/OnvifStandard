@@ -1,3 +1,5 @@
+[![License](https://img.shields.io/github/license/megedsh/OnvifStandard.svg)](https://github.com/megedsh/OnvifStandard/blob/master/LICENSE.txt) 
+
 # OnvifStandard
 
 A .NET Standard 2.0 library for interacting with ONVIF-compliant devices (such as IP cameras) using SOAP over HTTP.  
