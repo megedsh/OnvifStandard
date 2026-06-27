@@ -19,9 +19,9 @@ jobs:
       with:
         dotnet-version: 8.0.x
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore src/**.sln
     - name: Build
-      run: dotnet build --no-restore --configuration Release /p:Version=${{env.VERSION}}
+      run: dotnet build src/**.sln --no-restore --configuration Release /p:Version=${{env.VERSION}}
 
     - name: Pack
       run: dotnet pack src/OnvifStandard/OnvifStandard.csproj  --configuration Release --no-build -o ./nupkg
