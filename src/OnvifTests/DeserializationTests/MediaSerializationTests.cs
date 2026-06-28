@@ -3,7 +3,7 @@ using OnvifStandard;
 using OnvifStandard.Common;
 using OnvifStandard.Media;
 
-using GetServiceCapabilitiesResponse = OnvifStandard.Device.GetServiceCapabilitiesResponse;
+using GetServiceCapabilitiesResponse = OnvifStandard.Media.GetServiceCapabilitiesResponse;
 
 namespace OnvifTests.DeserializationTests
 {
