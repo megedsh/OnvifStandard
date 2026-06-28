@@ -1,14 +1,9 @@
-using System;
 using System.Threading.Tasks;
-
-using OnvifStandard.Common;
 
 namespace OnvifStandard.Device
 {
     public class DeviceClient : OnvifSoapClientBase
     {
-        private Uri serviceUri => ServiceUri ?? throw new InvalidOperationException("ServiceUri must be set.");
-
         public Task<GetServicesResponse> GetServices(bool includeCapability)
         {
             GetServicesRequest getServicesRequest = new GetServicesRequest
@@ -367,293 +362,116 @@ namespace OnvifStandard.Device
             return send<GetCapabilitiesRequest, GetCapabilitiesResponse>(getCapabilitiesRequest);
         }
 
-        public Task<AddIPAddressFilterResponse> AddIPAddressFilter(AddIPAddressFilterRequest addIPAddressFilterRequest)
-        {
-            return send<AddIPAddressFilterRequest, AddIPAddressFilterResponse>(addIPAddressFilterRequest);
-        }
+        public Task<AddIPAddressFilterResponse> AddIPAddressFilter(AddIPAddressFilterRequest addIPAddressFilterRequest) => send<AddIPAddressFilterRequest, AddIPAddressFilterResponse>(addIPAddressFilterRequest);
 
-        public Task<AddScopesResponse> AddScopes(AddScopesRequest addScopesRequest)
-        {
-            return send<AddScopesRequest, AddScopesResponse>(addScopesRequest);
-        }
+        public Task<AddScopesResponse> AddScopes(AddScopesRequest addScopesRequest) => send<AddScopesRequest, AddScopesResponse>(addScopesRequest);
 
-        public Task<CreateCertificateResponse> CreateCertificate(CreateCertificateRequest createCertificateRequest)
-        {
-            return send<CreateCertificateRequest, CreateCertificateResponse>(createCertificateRequest);
-        }
+        public Task<CreateCertificateResponse> CreateCertificate(CreateCertificateRequest createCertificateRequest) => send<CreateCertificateRequest, CreateCertificateResponse>(createCertificateRequest);
 
-        public Task<CreateDot1XConfigurationResponse> CreateDot1XConfiguration(CreateDot1XConfigurationRequest createDot1XConfigurationRequest)
-        {
-            return send<CreateDot1XConfigurationRequest, CreateDot1XConfigurationResponse>(createDot1XConfigurationRequest);
-        }
+        public Task<CreateDot1XConfigurationResponse> CreateDot1XConfiguration(CreateDot1XConfigurationRequest createDot1XConfigurationRequest) => send<CreateDot1XConfigurationRequest, CreateDot1XConfigurationResponse>(createDot1XConfigurationRequest);
 
-        public Task<CreateStorageConfigurationResponse> CreateStorageConfiguration(CreateStorageConfigurationRequest createStorageConfigurationRequest)
-        {
-            return send<CreateStorageConfigurationRequest, CreateStorageConfigurationResponse>(createStorageConfigurationRequest);
-        }
+        public Task<CreateStorageConfigurationResponse> CreateStorageConfiguration(CreateStorageConfigurationRequest createStorageConfigurationRequest) => send<CreateStorageConfigurationRequest, CreateStorageConfigurationResponse>(createStorageConfigurationRequest);
 
-        public Task<CreateUsersResponse> CreateUsers(CreateUsersRequest createUsersRequest)
-        {
-            return send<CreateUsersRequest, CreateUsersResponse>(createUsersRequest);
-        }
+        public Task<CreateUsersResponse> CreateUsers(CreateUsersRequest createUsersRequest) => send<CreateUsersRequest, CreateUsersResponse>(createUsersRequest);
 
-        public Task<DeleteCertificatesResponse> DeleteCertificates(DeleteCertificatesRequest deleteCertificatesRequest)
-        {
-            return send<DeleteCertificatesRequest, DeleteCertificatesResponse>(deleteCertificatesRequest);
-        }
+        public Task<DeleteCertificatesResponse> DeleteCertificates(DeleteCertificatesRequest deleteCertificatesRequest) => send<DeleteCertificatesRequest, DeleteCertificatesResponse>(deleteCertificatesRequest);
 
-        public Task<DeleteDot1XConfigurationResponse> DeleteDot1XConfiguration(DeleteDot1XConfigurationRequest deleteDot1XConfigurationRequest)
-        {
-            return send<DeleteDot1XConfigurationRequest, DeleteDot1XConfigurationResponse>(deleteDot1XConfigurationRequest);
-        }
+        public Task<DeleteDot1XConfigurationResponse> DeleteDot1XConfiguration(DeleteDot1XConfigurationRequest deleteDot1XConfigurationRequest) => send<DeleteDot1XConfigurationRequest, DeleteDot1XConfigurationResponse>(deleteDot1XConfigurationRequest);
 
-        public Task<DeleteGeoLocationResponse> DeleteGeoLocation(DeleteGeoLocationRequest deleteGeoLocationRequest)
-        {
-            return send<DeleteGeoLocationRequest, DeleteGeoLocationResponse>(deleteGeoLocationRequest);
-        }
+        public Task<DeleteGeoLocationResponse> DeleteGeoLocation(DeleteGeoLocationRequest deleteGeoLocationRequest) => send<DeleteGeoLocationRequest, DeleteGeoLocationResponse>(deleteGeoLocationRequest);
 
-        public Task<DeleteStorageConfigurationResponse> DeleteStorageConfiguration(DeleteStorageConfigurationRequest deleteStorageConfigurationRequest)
-        {
-            return send<DeleteStorageConfigurationRequest, DeleteStorageConfigurationResponse>(deleteStorageConfigurationRequest);
-        }
+        public Task<DeleteStorageConfigurationResponse> DeleteStorageConfiguration(DeleteStorageConfigurationRequest deleteStorageConfigurationRequest) => send<DeleteStorageConfigurationRequest, DeleteStorageConfigurationResponse>(deleteStorageConfigurationRequest);
 
-        public Task<DeleteUserRoleResponse> DeleteUserRole(DeleteUserRoleRequest deleteUserRoleRequest)
-        {
-            return send<DeleteUserRoleRequest, DeleteUserRoleResponse>(deleteUserRoleRequest);
-        }
+        public Task<DeleteUserRoleResponse> DeleteUserRole(DeleteUserRoleRequest deleteUserRoleRequest) => send<DeleteUserRoleRequest, DeleteUserRoleResponse>(deleteUserRoleRequest);
 
-        public Task<DeleteUsersResponse> DeleteUsers(DeleteUsersRequest deleteUsersRequest)
-        {
-            return send<DeleteUsersRequest, DeleteUsersResponse>(deleteUsersRequest);
-        }
+        public Task<DeleteUsersResponse> DeleteUsers(DeleteUsersRequest deleteUsersRequest) => send<DeleteUsersRequest, DeleteUsersResponse>(deleteUsersRequest);
 
-        public Task<LoadCACertificatesResponse> LoadCACertificates(LoadCACertificatesRequest loadCACertificatesRequest)
-        {
-            return send<LoadCACertificatesRequest, LoadCACertificatesResponse>(loadCACertificatesRequest);
-        }
+        public Task<LoadCACertificatesResponse> LoadCACertificates(LoadCACertificatesRequest loadCACertificatesRequest) => send<LoadCACertificatesRequest, LoadCACertificatesResponse>(loadCACertificatesRequest);
 
-        public Task<LoadCertificatesResponse> LoadCertificates(LoadCertificatesRequest loadCertificatesRequest)
-        {
-            return send<LoadCertificatesRequest, LoadCertificatesResponse>(loadCertificatesRequest);
-        }
+        public Task<LoadCertificatesResponse> LoadCertificates(LoadCertificatesRequest loadCertificatesRequest) => send<LoadCertificatesRequest, LoadCertificatesResponse>(loadCertificatesRequest);
 
-        public Task<LoadCertificateWithPrivateKeyResponse> LoadCertificateWithPrivateKey(LoadCertificateWithPrivateKeyRequest loadCertificateWithPrivateKeyRequest)
-        {
-            return send<LoadCertificateWithPrivateKeyRequest, LoadCertificateWithPrivateKeyResponse>(loadCertificateWithPrivateKeyRequest);
-        }
+        public Task<LoadCertificateWithPrivateKeyResponse> LoadCertificateWithPrivateKey(LoadCertificateWithPrivateKeyRequest loadCertificateWithPrivateKeyRequest) => send<LoadCertificateWithPrivateKeyRequest, LoadCertificateWithPrivateKeyResponse>(loadCertificateWithPrivateKeyRequest);
 
-        public Task<RemoveIPAddressFilterResponse> RemoveIPAddressFilter(RemoveIPAddressFilterRequest removeIPAddressFilterRequest)
-        {
-            return send<RemoveIPAddressFilterRequest, RemoveIPAddressFilterResponse>(removeIPAddressFilterRequest);
-        }
+        public Task<RemoveIPAddressFilterResponse> RemoveIPAddressFilter(RemoveIPAddressFilterRequest removeIPAddressFilterRequest) => send<RemoveIPAddressFilterRequest, RemoveIPAddressFilterResponse>(removeIPAddressFilterRequest);
 
-        public Task<RemoveScopesResponse> RemoveScopes(RemoveScopesRequest removeScopesRequest)
-        {
-            return send<RemoveScopesRequest, RemoveScopesResponse>(removeScopesRequest);
-        }
+        public Task<RemoveScopesResponse> RemoveScopes(RemoveScopesRequest removeScopesRequest) => send<RemoveScopesRequest, RemoveScopesResponse>(removeScopesRequest);
 
-        public Task<RestoreSystemResponse> RestoreSystem(RestoreSystemRequest restoreSystemRequest)
-        {
-            return send<RestoreSystemRequest, RestoreSystemResponse>(restoreSystemRequest);
-        }
+        public Task<RestoreSystemResponse> RestoreSystem(RestoreSystemRequest restoreSystemRequest) => send<RestoreSystemRequest, RestoreSystemResponse>(restoreSystemRequest);
 
-        public Task<ScanAvailableDot11NetworksResponse> ScanAvailableDot11Networks(ScanAvailableDot11NetworksRequest scanAvailableDot11NetworksRequest)
-        {
-            return send<ScanAvailableDot11NetworksRequest, ScanAvailableDot11NetworksResponse>(scanAvailableDot11NetworksRequest);
-        }
+        public Task<ScanAvailableDot11NetworksResponse> ScanAvailableDot11Networks(ScanAvailableDot11NetworksRequest scanAvailableDot11NetworksRequest) => send<ScanAvailableDot11NetworksRequest, ScanAvailableDot11NetworksResponse>(scanAvailableDot11NetworksRequest);
 
-        public Task<SendAuxiliaryCommandResponse> SendAuxiliaryCommand(SendAuxiliaryCommandRequest sendAuxiliaryCommandRequest)
-        {
-            return send<SendAuxiliaryCommandRequest, SendAuxiliaryCommandResponse>(sendAuxiliaryCommandRequest);
-        }
+        public Task<SendAuxiliaryCommandResponse> SendAuxiliaryCommand(SendAuxiliaryCommandRequest sendAuxiliaryCommandRequest) => send<SendAuxiliaryCommandRequest, SendAuxiliaryCommandResponse>(sendAuxiliaryCommandRequest);
 
-        public Task<SetAccessPolicyResponse> SetAccessPolicy(SetAccessPolicyRequest setAccessPolicyRequest)
-        {
-            return send<SetAccessPolicyRequest, SetAccessPolicyResponse>(setAccessPolicyRequest);
-        }
+        public Task<SetAccessPolicyResponse> SetAccessPolicy(SetAccessPolicyRequest setAccessPolicyRequest) => send<SetAccessPolicyRequest, SetAccessPolicyResponse>(setAccessPolicyRequest);
 
-        public Task<SetAuthFailureWarningConfigurationResponse> SetAuthFailureWarningConfiguration(SetAuthFailureWarningConfigurationRequest setAuthFailureWarningConfigurationRequest)
-        {
-            return send<SetAuthFailureWarningConfigurationRequest, SetAuthFailureWarningConfigurationResponse>(setAuthFailureWarningConfigurationRequest);
-        }
+        public Task<SetAuthFailureWarningConfigurationResponse> SetAuthFailureWarningConfiguration(SetAuthFailureWarningConfigurationRequest setAuthFailureWarningConfigurationRequest) => send<SetAuthFailureWarningConfigurationRequest, SetAuthFailureWarningConfigurationResponse>(setAuthFailureWarningConfigurationRequest);
 
-        public Task<SetCertificatesStatusResponse> SetCertificatesStatus(SetCertificatesStatusRequest setCertificatesStatusRequest)
-        {
-            return send<SetCertificatesStatusRequest, SetCertificatesStatusResponse>(setCertificatesStatusRequest);
-        }
+        public Task<SetCertificatesStatusResponse> SetCertificatesStatus(SetCertificatesStatusRequest setCertificatesStatusRequest) => send<SetCertificatesStatusRequest, SetCertificatesStatusResponse>(setCertificatesStatusRequest);
 
-        public Task<SetClientCertificateModeResponse> SetClientCertificateMode(SetClientCertificateModeRequest setClientCertificateModeRequest)
-        {
-            return send<SetClientCertificateModeRequest, SetClientCertificateModeResponse>(setClientCertificateModeRequest);
-        }
+        public Task<SetClientCertificateModeResponse> SetClientCertificateMode(SetClientCertificateModeRequest setClientCertificateModeRequest) => send<SetClientCertificateModeRequest, SetClientCertificateModeResponse>(setClientCertificateModeRequest);
 
-        public Task<SetDiscoveryModeResponse> SetDiscoveryMode(SetDiscoveryModeRequest setDiscoveryModeRequest)
-        {
-            return send<SetDiscoveryModeRequest, SetDiscoveryModeResponse>(setDiscoveryModeRequest);
-        }
+        public Task<SetDiscoveryModeResponse> SetDiscoveryMode(SetDiscoveryModeRequest setDiscoveryModeRequest) => send<SetDiscoveryModeRequest, SetDiscoveryModeResponse>(setDiscoveryModeRequest);
 
-        public Task<SetDNSResponse> SetDNS(SetDNSRequest setDNSRequest)
-        {
-            return send<SetDNSRequest, SetDNSResponse>(setDNSRequest);
-        }
+        public Task<SetDNSResponse> SetDNS(SetDNSRequest setDNSRequest) => send<SetDNSRequest, SetDNSResponse>(setDNSRequest);
 
-        public Task<SetDot1XConfigurationResponse> SetDot1XConfiguration(SetDot1XConfigurationRequest setDot1XConfigurationRequest)
-        {
-            return send<SetDot1XConfigurationRequest, SetDot1XConfigurationResponse>(setDot1XConfigurationRequest);
-        }
+        public Task<SetDot1XConfigurationResponse> SetDot1XConfiguration(SetDot1XConfigurationRequest setDot1XConfigurationRequest) => send<SetDot1XConfigurationRequest, SetDot1XConfigurationResponse>(setDot1XConfigurationRequest);
 
-        public Task<SetDPAddressesResponse> SetDPAddresses(SetDPAddressesRequest setDPAddressesRequest)
-        {
-            return send<SetDPAddressesRequest, SetDPAddressesResponse>(setDPAddressesRequest);
-        }
+        public Task<SetDPAddressesResponse> SetDPAddresses(SetDPAddressesRequest setDPAddressesRequest) => send<SetDPAddressesRequest, SetDPAddressesResponse>(setDPAddressesRequest);
 
-        public Task<SetDynamicDNSResponse> SetDynamicDNS(SetDynamicDNSRequest setDynamicDNSRequest)
-        {
-            return send<SetDynamicDNSRequest, SetDynamicDNSResponse>(setDynamicDNSRequest);
-        }
+        public Task<SetDynamicDNSResponse> SetDynamicDNS(SetDynamicDNSRequest setDynamicDNSRequest) => send<SetDynamicDNSRequest, SetDynamicDNSResponse>(setDynamicDNSRequest);
 
-        public Task<SetGeoLocationResponse> SetGeoLocation(SetGeoLocationRequest setGeoLocationRequest)
-        {
-            return send<SetGeoLocationRequest, SetGeoLocationResponse>(setGeoLocationRequest);
-        }
+        public Task<SetGeoLocationResponse> SetGeoLocation(SetGeoLocationRequest setGeoLocationRequest) => send<SetGeoLocationRequest, SetGeoLocationResponse>(setGeoLocationRequest);
 
-        public Task<SetHashingAlgorithmResponse> SetHashingAlgorithm(SetHashingAlgorithmRequest setHashingAlgorithmRequest)
-        {
-            return send<SetHashingAlgorithmRequest, SetHashingAlgorithmResponse>(setHashingAlgorithmRequest);
-        }
+        public Task<SetHashingAlgorithmResponse> SetHashingAlgorithm(SetHashingAlgorithmRequest setHashingAlgorithmRequest) => send<SetHashingAlgorithmRequest, SetHashingAlgorithmResponse>(setHashingAlgorithmRequest);
 
-        public Task<SetHostnameResponse> SetHostname(SetHostnameRequest setHostnameRequest)
-        {
-            return send<SetHostnameRequest, SetHostnameResponse>(setHostnameRequest);
-        }
+        public Task<SetHostnameResponse> SetHostname(SetHostnameRequest setHostnameRequest) => send<SetHostnameRequest, SetHostnameResponse>(setHostnameRequest);
 
-        public Task<SetHostnameFromDHCPResponse> SetHostnameFromDHCP(SetHostnameFromDHCPRequest setHostnameFromDHCPRequest)
-        {
-            return send<SetHostnameFromDHCPRequest, SetHostnameFromDHCPResponse>(setHostnameFromDHCPRequest);
-        }
+        public Task<SetHostnameFromDHCPResponse> SetHostnameFromDHCP(SetHostnameFromDHCPRequest setHostnameFromDHCPRequest) => send<SetHostnameFromDHCPRequest, SetHostnameFromDHCPResponse>(setHostnameFromDHCPRequest);
 
-        public Task<SetIPAddressFilterResponse> SetIPAddressFilter(SetIPAddressFilterRequest setIPAddressFilterRequest)
-        {
-            return send<SetIPAddressFilterRequest, SetIPAddressFilterResponse>(setIPAddressFilterRequest);
-        }
+        public Task<SetIPAddressFilterResponse> SetIPAddressFilter(SetIPAddressFilterRequest setIPAddressFilterRequest) => send<SetIPAddressFilterRequest, SetIPAddressFilterResponse>(setIPAddressFilterRequest);
 
-        public Task<SetNetworkDefaultGatewayResponse> SetNetworkDefaultGateway(SetNetworkDefaultGatewayRequest setNetworkDefaultGatewayRequest)
-        {
-            return send<SetNetworkDefaultGatewayRequest, SetNetworkDefaultGatewayResponse>(setNetworkDefaultGatewayRequest);
-        }
+        public Task<SetNetworkDefaultGatewayResponse> SetNetworkDefaultGateway(SetNetworkDefaultGatewayRequest setNetworkDefaultGatewayRequest) => send<SetNetworkDefaultGatewayRequest, SetNetworkDefaultGatewayResponse>(setNetworkDefaultGatewayRequest);
 
-        public Task<SetNetworkInterfacesResponse> SetNetworkInterfaces(SetNetworkInterfacesRequest setNetworkInterfacesRequest)
-        {
-            return send<SetNetworkInterfacesRequest, SetNetworkInterfacesResponse>(setNetworkInterfacesRequest);
-        }
+        public Task<SetNetworkInterfacesResponse> SetNetworkInterfaces(SetNetworkInterfacesRequest setNetworkInterfacesRequest) => send<SetNetworkInterfacesRequest, SetNetworkInterfacesResponse>(setNetworkInterfacesRequest);
 
-        public Task<SetNetworkProtocolsResponse> SetNetworkProtocols(SetNetworkProtocolsRequest setNetworkProtocolsRequest)
-        {
-            return send<SetNetworkProtocolsRequest, SetNetworkProtocolsResponse>(setNetworkProtocolsRequest);
-        }
+        public Task<SetNetworkProtocolsResponse> SetNetworkProtocols(SetNetworkProtocolsRequest setNetworkProtocolsRequest) => send<SetNetworkProtocolsRequest, SetNetworkProtocolsResponse>(setNetworkProtocolsRequest);
 
-        public Task<SetNTPResponse> SetNTP(SetNTPRequest setNTPRequest)
-        {
-            return send<SetNTPRequest, SetNTPResponse>(setNTPRequest);
-        }
+        public Task<SetNTPResponse> SetNTP(SetNTPRequest setNTPRequest) => send<SetNTPRequest, SetNTPResponse>(setNTPRequest);
 
-        public Task<SetPasswordComplexityConfigurationResponse> SetPasswordComplexityConfiguration(SetPasswordComplexityConfigurationRequest setPasswordComplexityConfigurationRequest)
-        {
-            return send<SetPasswordComplexityConfigurationRequest, SetPasswordComplexityConfigurationResponse>(setPasswordComplexityConfigurationRequest);
-        }
+        public Task<SetPasswordComplexityConfigurationResponse> SetPasswordComplexityConfiguration(SetPasswordComplexityConfigurationRequest setPasswordComplexityConfigurationRequest) => send<SetPasswordComplexityConfigurationRequest, SetPasswordComplexityConfigurationResponse>(setPasswordComplexityConfigurationRequest);
 
-        public Task<SetPasswordHistoryConfigurationResponse> SetPasswordHistoryConfiguration(SetPasswordHistoryConfigurationRequest setPasswordHistoryConfigurationRequest)
-        {
-            return send<SetPasswordHistoryConfigurationRequest, SetPasswordHistoryConfigurationResponse>(setPasswordHistoryConfigurationRequest);
-        }
+        public Task<SetPasswordHistoryConfigurationResponse> SetPasswordHistoryConfiguration(SetPasswordHistoryConfigurationRequest setPasswordHistoryConfigurationRequest) => send<SetPasswordHistoryConfigurationRequest, SetPasswordHistoryConfigurationResponse>(setPasswordHistoryConfigurationRequest);
 
-        public Task<SetRelayOutputSettingsResponse> SetRelayOutputSettings(SetRelayOutputSettingsRequest setRelayOutputSettingsRequest)
-        {
-            return send<SetRelayOutputSettingsRequest, SetRelayOutputSettingsResponse>(setRelayOutputSettingsRequest);
-        }
+        public Task<SetRelayOutputSettingsResponse> SetRelayOutputSettings(SetRelayOutputSettingsRequest setRelayOutputSettingsRequest) => send<SetRelayOutputSettingsRequest, SetRelayOutputSettingsResponse>(setRelayOutputSettingsRequest);
 
-        public Task<SetRelayOutputStateResponse> SetRelayOutputState(SetRelayOutputStateRequest setRelayOutputStateRequest)
-        {
-            return send<SetRelayOutputStateRequest, SetRelayOutputStateResponse>(setRelayOutputStateRequest);
-        }
+        public Task<SetRelayOutputStateResponse> SetRelayOutputState(SetRelayOutputStateRequest setRelayOutputStateRequest) => send<SetRelayOutputStateRequest, SetRelayOutputStateResponse>(setRelayOutputStateRequest);
 
-        public Task<SetRemoteDiscoveryModeResponse> SetRemoteDiscoveryMode(SetRemoteDiscoveryModeRequest setRemoteDiscoveryModeRequest)
-        {
-            return send<SetRemoteDiscoveryModeRequest, SetRemoteDiscoveryModeResponse>(setRemoteDiscoveryModeRequest);
-        }
+        public Task<SetRemoteDiscoveryModeResponse> SetRemoteDiscoveryMode(SetRemoteDiscoveryModeRequest setRemoteDiscoveryModeRequest) => send<SetRemoteDiscoveryModeRequest, SetRemoteDiscoveryModeResponse>(setRemoteDiscoveryModeRequest);
 
-        public Task<SetRemoteUserResponse> SetRemoteUser(SetRemoteUserRequest setRemoteUserRequest)
-        {
-            return send<SetRemoteUserRequest, SetRemoteUserResponse>(setRemoteUserRequest);
-        }
+        public Task<SetRemoteUserResponse> SetRemoteUser(SetRemoteUserRequest setRemoteUserRequest) => send<SetRemoteUserRequest, SetRemoteUserResponse>(setRemoteUserRequest);
 
-        public Task<SetScopesResponse> SetScopes(SetScopesRequest setScopesRequest)
-        {
-            return send<SetScopesRequest, SetScopesResponse>(setScopesRequest);
-        }
+        public Task<SetScopesResponse> SetScopes(SetScopesRequest setScopesRequest) => send<SetScopesRequest, SetScopesResponse>(setScopesRequest);
 
-        public Task<SetStorageConfigurationResponse> SetStorageConfiguration(SetStorageConfigurationRequest setStorageConfigurationRequest)
-        {
-            return send<SetStorageConfigurationRequest, SetStorageConfigurationResponse>(setStorageConfigurationRequest);
-        }
+        public Task<SetStorageConfigurationResponse> SetStorageConfiguration(SetStorageConfigurationRequest setStorageConfigurationRequest) => send<SetStorageConfigurationRequest, SetStorageConfigurationResponse>(setStorageConfigurationRequest);
 
-        public Task<SetSystemDateAndTimeResponse> SetSystemDateAndTime(SetSystemDateAndTimeRequest setSystemDateAndTimeRequest)
-        {
-            return send<SetSystemDateAndTimeRequest, SetSystemDateAndTimeResponse>(setSystemDateAndTimeRequest);
-        }
+        public Task<SetSystemDateAndTimeResponse> SetSystemDateAndTime(SetSystemDateAndTimeRequest setSystemDateAndTimeRequest) => send<SetSystemDateAndTimeRequest, SetSystemDateAndTimeResponse>(setSystemDateAndTimeRequest);
 
-        public Task<SetSystemFactoryDefaultResponse> SetSystemFactoryDefault(SetSystemFactoryDefaultRequest setSystemFactoryDefaultRequest)
-        {
-            return send<SetSystemFactoryDefaultRequest, SetSystemFactoryDefaultResponse>(setSystemFactoryDefaultRequest);
-        }
+        public Task<SetSystemFactoryDefaultResponse> SetSystemFactoryDefault(SetSystemFactoryDefaultRequest setSystemFactoryDefaultRequest) => send<SetSystemFactoryDefaultRequest, SetSystemFactoryDefaultResponse>(setSystemFactoryDefaultRequest);
 
-        public Task<SetUserResponse> SetUser(SetUserRequest setUserRequest)
-        {
-            return send<SetUserRequest, SetUserResponse>(setUserRequest);
-        }
+        public Task<SetUserResponse> SetUser(SetUserRequest setUserRequest) => send<SetUserRequest, SetUserResponse>(setUserRequest);
 
-        public Task<SetUserRoleResponse> SetUserRole(SetUserRoleRequest setUserRoleRequest)
-        {
-            return send<SetUserRoleRequest, SetUserRoleResponse>(setUserRoleRequest);
-        }
+        public Task<SetUserRoleResponse> SetUserRole(SetUserRoleRequest setUserRoleRequest) => send<SetUserRoleRequest, SetUserRoleResponse>(setUserRoleRequest);
 
-        public Task<SetZeroConfigurationResponse> SetZeroConfiguration(SetZeroConfigurationRequest setZeroConfigurationRequest)
-        {
-            return send<SetZeroConfigurationRequest, SetZeroConfigurationResponse>(setZeroConfigurationRequest);
-        }
+        public Task<SetZeroConfigurationResponse> SetZeroConfiguration(SetZeroConfigurationRequest setZeroConfigurationRequest) => send<SetZeroConfigurationRequest, SetZeroConfigurationResponse>(setZeroConfigurationRequest);
 
-        public Task<StartFirmwareUpgradeResponse> StartFirmwareUpgrade(StartFirmwareUpgradeRequest startFirmwareUpgradeRequest)
-        {
-            return send<StartFirmwareUpgradeRequest, StartFirmwareUpgradeResponse>(startFirmwareUpgradeRequest);
-        }
+        public Task<StartFirmwareUpgradeResponse> StartFirmwareUpgrade(StartFirmwareUpgradeRequest startFirmwareUpgradeRequest) => send<StartFirmwareUpgradeRequest, StartFirmwareUpgradeResponse>(startFirmwareUpgradeRequest);
 
-        public Task<StartSystemRestoreResponse> StartSystemRestore(StartSystemRestoreRequest startSystemRestoreRequest)
-        {
-            return send<StartSystemRestoreRequest, StartSystemRestoreResponse>(startSystemRestoreRequest);
-        }
+        public Task<StartSystemRestoreResponse> StartSystemRestore(StartSystemRestoreRequest startSystemRestoreRequest) => send<StartSystemRestoreRequest, StartSystemRestoreResponse>(startSystemRestoreRequest);
 
-        public Task<SystemRebootResponse> SystemReboot(SystemRebootRequest systemRebootRequest)
-        {
-            return send<SystemRebootRequest, SystemRebootResponse>(systemRebootRequest);
-        }
+        public Task<SystemRebootResponse> SystemReboot(SystemRebootRequest systemRebootRequest) => send<SystemRebootRequest, SystemRebootResponse>(systemRebootRequest);
 
-        public Task<UpgradeFirmwareResponse> UpgradeFirmware(UpgradeFirmwareRequest upgradeFirmwareRequest)
-        {
-            return send<UpgradeFirmwareRequest, UpgradeFirmwareResponse>(upgradeFirmwareRequest);
-        }
+        public Task<UpgradeFirmwareResponse> UpgradeFirmware(UpgradeFirmwareRequest upgradeFirmwareRequest) => send<UpgradeFirmwareRequest, UpgradeFirmwareResponse>(upgradeFirmwareRequest);
 
-        public Task<UpgradeSystemFirmwareResponse> UpgradeSystemFirmware(UpgradeSystemFirmwareRequest upgradeSystemFirmwareRequest)
-        {
-            return send<UpgradeSystemFirmwareRequest, UpgradeSystemFirmwareResponse>(upgradeSystemFirmwareRequest);
-        }
-
-        private Task<TRes> send<TReq, TRes>(TReq request)
-        {
-            SoapSecurityHeader securityHeader = getSecurityHeader();
-            return doRequestAwaitResponse<TReq, TRes>(serviceUri, request, securityHeader);
-        }
+        public Task<UpgradeSystemFirmwareResponse> UpgradeSystemFirmware(UpgradeSystemFirmwareRequest upgradeSystemFirmwareRequest) => send<UpgradeSystemFirmwareRequest, UpgradeSystemFirmwareResponse>(upgradeSystemFirmwareRequest);
     }
 }
-
-
-

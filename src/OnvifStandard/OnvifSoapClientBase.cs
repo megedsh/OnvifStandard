@@ -20,10 +20,10 @@ namespace OnvifStandard
         public string Password { get; set; }
         public SoapVersion SoapVersion { get; set; } = SoapVersion.Soap12;
 
-        protected async Task<TRes> doRequestAwaitResponse<TReq, TRes>(Uri                uri,
-                                                                      TReq               request,
-                                                                      SoapSecurityHeader securityHeader,
-                                                                      bool               throwOnFault = true)
+        protected virtual async Task<TRes> doRequestAwaitResponse<TReq, TRes>(Uri                uri,
+                                                                              TReq               request,
+                                                                              SoapSecurityHeader securityHeader,
+                                                                              bool               throwOnFault = true)
         {
             
             HttpResponseMessage httpResponseMessage = await SoapClient.PostAsync(uri,
@@ -64,7 +64,14 @@ namespace OnvifStandard
                 throw new InvalidOperationException($"Failed to deserialize SOAP response into type {typeof(SoapEnvelope).Name}. Response content: {contentBody}", e);
             }
         }
+        protected virtual Task<TRes> send<TReq, TRes>(TReq request)
+        {
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+            return doRequestAwaitResponse<TReq, TRes>(serviceUri, request, securityHeader);
+        }
 
-        protected SoapSecurityHeader getSecurityHeader() => SoapSecurityHeader.Create(User, Password);
+        protected virtual SoapSecurityHeader getSecurityHeader() => SoapSecurityHeader.Create(User, Password);
+
+        private Uri serviceUri => ServiceUri ?? throw new InvalidOperationException("ServiceUri must be set.");
     }
 }

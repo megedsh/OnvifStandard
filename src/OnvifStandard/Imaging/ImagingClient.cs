@@ -1,14 +1,9 @@
-using System;
 using System.Threading.Tasks;
-
-using OnvifStandard.Common;
 
 namespace OnvifStandard.Imaging
 {
     public class ImagingClient : OnvifSoapClientBase
     {
-        private Uri serviceUri => ServiceUri ?? throw new InvalidOperationException("ServiceUri must be set.");
-
         public Task<GetServiceCapabilitiesResponse> GetServiceCapabilities() => send<GetServiceCapabilitiesRequest, GetServiceCapabilitiesResponse>(new GetServiceCapabilitiesRequest());
 
         public Task<GetImagingSettingsResponse> GetImagingSettings(string videoSourceToken) =>
@@ -74,11 +69,5 @@ namespace OnvifStandard.Imaging
                 VideoSourceToken = videoSourceToken,
                 PresetToken = presetToken
             });
-
-        private Task<TRes> send<TReq, TRes>(TReq request)
-        {
-            SoapSecurityHeader securityHeader = getSecurityHeader();
-            return doRequestAwaitResponse<TReq, TRes>(serviceUri, request, securityHeader);
-        }
     }
 }
