@@ -1,4 +1,5 @@
-﻿using System.Xml;
+using System.Xml;
+using System;
 using System.Xml.Serialization;
 
 namespace OnvifStandard.Device
@@ -289,6 +290,18 @@ namespace OnvifStandard.Device
         [XmlElement("LocalDateTime", Namespace = "http://www.onvif.org/ver10/schema")]
         public DeviceDateTime LocalDateTime { get; set; }
 
+        [XmlElement("Extension", Namespace = "http://www.onvif.org/ver10/schema")]
+        public SystemDateTimeExtension Extension { get; set; }
+
+        [XmlAnyElement]
+        public XmlElement[] Any { get; set; }
+
+        [XmlAnyAttribute]
+        public XmlAttribute[] AnyAttribute { get; set; }
+    }
+
+    public class SystemDateTimeExtension
+    {
         [XmlAnyElement]
         public XmlElement[] Any { get; set; }
     }
@@ -362,7 +375,7 @@ namespace OnvifStandard.Device
     public class SystemLogData
     {
         [XmlElement("Binary", Namespace = "http://www.onvif.org/ver10/schema")]
-        public byte[] Binary { get; set; }
+        public AttachmentData Binary { get; set; }
 
         [XmlElement("String", Namespace = "http://www.onvif.org/ver10/schema")]
         public string String { get; set; }
@@ -386,7 +399,7 @@ namespace OnvifStandard.Device
     public class SupportInformationData
     {
         [XmlElement("Binary", Namespace = "http://www.onvif.org/ver10/schema")]
-        public byte[] Binary { get; set; }
+        public AttachmentData Binary { get; set; }
 
         [XmlElement("String", Namespace = "http://www.onvif.org/ver10/schema")]
         public string String { get; set; }
@@ -1185,6 +1198,12 @@ namespace OnvifStandard.Device
         [XmlElement("SystemBackupUri", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
         public string SystemBackupUri { get; set; }
 
+        [XmlElement("Extension", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public SystemUrisExtension Extension { get; set; }
+    }
+
+    public class SystemUrisExtension
+    {
         [XmlAnyElement]
         public XmlElement[] Any { get; set; }
     }
@@ -1437,7 +1456,7 @@ namespace OnvifStandard.Device
     [XmlRoot("GetCapabilities", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
     public class GetCapabilitiesRequest
     {
-        [XmlElement("Category")]
+        [XmlElement("Category", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
         public CapabilityCategory[] Category { get; set; } = { CapabilityCategory.All };
     }
 
@@ -1960,5 +1979,1087 @@ namespace OnvifStandard.Device
     {
         [XmlAnyElement]
         public XmlElement[] Any { get; set; }
+    }
+[XmlRoot("AddIPAddressFilter", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class AddIPAddressFilterRequest
+    {
+        [XmlElement("IPAddressFilter", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public IPAddressFilter IPAddressFilter { get; set; }
+
+    }
+
+    [XmlRoot("AddIPAddressFilterResponse", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class AddIPAddressFilterResponse
+    {
+    }
+
+    [XmlRoot("AddScopes", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class AddScopesRequest
+    {
+        [XmlElement("ScopeItem", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public string[] ScopeItem { get; set; }
+
+    }
+
+    [XmlRoot("AddScopesResponse", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class AddScopesResponse
+    {
+    }
+
+    [XmlRoot("CreateCertificate", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class CreateCertificateRequest
+    {
+        [XmlElement("CertificateID", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public string CertificateID { get; set; }
+
+        [XmlElement("Subject", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public string Subject { get; set; }
+
+        [XmlElement("ValidNotBefore", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public DateTime? ValidNotBefore { get; set; }
+
+        [XmlElement("ValidNotAfter", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public DateTime? ValidNotAfter { get; set; }
+
+    }
+
+    [XmlRoot("CreateCertificateResponse", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class CreateCertificateResponse
+    {
+        [XmlElement("NvtCertificate", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public Certificate NvtCertificate { get; set; }
+
+    }
+
+    [XmlRoot("CreateDot1XConfiguration", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class CreateDot1XConfigurationRequest
+    {
+        [XmlElement("Dot1XConfiguration", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public Dot1XConfiguration Dot1XConfiguration { get; set; }
+
+    }
+
+    [XmlRoot("CreateDot1XConfigurationResponse", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class CreateDot1XConfigurationResponse
+    {
+    }
+
+    [XmlRoot("CreateStorageConfiguration", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class CreateStorageConfigurationRequest
+    {
+        [XmlElement("StorageConfiguration", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public StorageConfiguration StorageConfiguration { get; set; }
+
+    }
+
+    [XmlRoot("CreateStorageConfigurationResponse", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class CreateStorageConfigurationResponse
+    {
+        [XmlElement("Token", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public string Token { get; set; }
+
+    }
+
+    [XmlRoot("CreateUsers", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class CreateUsersRequest
+    {
+        [XmlElement("User", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public OnvifUser[] User { get; set; }
+
+    }
+
+    [XmlRoot("CreateUsersResponse", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class CreateUsersResponse
+    {
+    }
+
+    [XmlRoot("DeleteCertificates", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class DeleteCertificatesRequest
+    {
+        [XmlElement("CertificateID", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public string[] CertificateID { get; set; }
+
+    }
+
+    [XmlRoot("DeleteCertificatesResponse", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class DeleteCertificatesResponse
+    {
+    }
+
+    [XmlRoot("DeleteDot1XConfiguration", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class DeleteDot1XConfigurationRequest
+    {
+        [XmlElement("Dot1XConfigurationToken", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public string[] Dot1XConfigurationToken { get; set; }
+
+    }
+
+    [XmlRoot("DeleteDot1XConfigurationResponse", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class DeleteDot1XConfigurationResponse
+    {
+    }
+
+    [XmlRoot("DeleteGeoLocation", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class DeleteGeoLocationRequest
+    {
+        [XmlElement("Location", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public LocationEntity[] Location { get; set; }
+
+    }
+
+    [XmlRoot("DeleteGeoLocationResponse", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class DeleteGeoLocationResponse
+    {
+    }
+
+    [XmlRoot("DeleteStorageConfiguration", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class DeleteStorageConfigurationRequest
+    {
+        [XmlElement("Token", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public string Token { get; set; }
+
+    }
+
+    [XmlRoot("DeleteStorageConfigurationResponse", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class DeleteStorageConfigurationResponse
+    {
+    }
+
+    [XmlRoot("DeleteUserRole", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class DeleteUserRoleRequest
+    {
+        [XmlElement("UserRole", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public string UserRole { get; set; }
+
+    }
+
+    [XmlRoot("DeleteUserRoleResponse", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class DeleteUserRoleResponse
+    {
+    }
+
+    [XmlRoot("DeleteUsers", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class DeleteUsersRequest
+    {
+        [XmlElement("Username", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public string[] Username { get; set; }
+
+    }
+
+    [XmlRoot("DeleteUsersResponse", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class DeleteUsersResponse
+    {
+    }
+
+    [XmlRoot("LoadCACertificates", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class LoadCACertificatesRequest
+    {
+        [XmlElement("CACertificate", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public Certificate[] CACertificate { get; set; }
+
+    }
+
+    [XmlRoot("LoadCACertificatesResponse", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class LoadCACertificatesResponse
+    {
+    }
+
+    [XmlRoot("LoadCertificates", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class LoadCertificatesRequest
+    {
+        [XmlElement("NVTCertificate", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public Certificate[] NVTCertificate { get; set; }
+
+    }
+
+    [XmlRoot("LoadCertificatesResponse", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class LoadCertificatesResponse
+    {
+    }
+
+    [XmlRoot("LoadCertificateWithPrivateKey", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class LoadCertificateWithPrivateKeyRequest
+    {
+        [XmlElement("CertificateWithPrivateKey", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public CertificateWithPrivateKey[] CertificateWithPrivateKey { get; set; }
+
+    }
+
+    [XmlRoot("LoadCertificateWithPrivateKeyResponse", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class LoadCertificateWithPrivateKeyResponse
+    {
+    }
+
+    [XmlRoot("RemoveIPAddressFilter", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class RemoveIPAddressFilterRequest
+    {
+        [XmlElement("IPAddressFilter", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public IPAddressFilter IPAddressFilter { get; set; }
+
+    }
+
+    [XmlRoot("RemoveIPAddressFilterResponse", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class RemoveIPAddressFilterResponse
+    {
+    }
+
+    [XmlRoot("RemoveScopes", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class RemoveScopesRequest
+    {
+        [XmlElement("ScopeItem", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public string[] ScopeItem { get; set; }
+
+    }
+
+    [XmlRoot("RemoveScopesResponse", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class RemoveScopesResponse
+    {
+        [XmlElement("ScopeItem", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public string[] ScopeItem { get; set; }
+
+    }
+
+    [XmlRoot("RestoreSystem", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class RestoreSystemRequest
+    {
+        [XmlElement("BackupFiles", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public BackupFile[] BackupFiles { get; set; }
+
+    }
+
+    [XmlRoot("RestoreSystemResponse", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class RestoreSystemResponse
+    {
+    }
+
+    [XmlRoot("ScanAvailableDot11Networks", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class ScanAvailableDot11NetworksRequest
+    {
+        [XmlElement("InterfaceToken", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public string InterfaceToken { get; set; }
+
+    }
+
+    [XmlRoot("ScanAvailableDot11NetworksResponse", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class ScanAvailableDot11NetworksResponse
+    {
+        [XmlElement("Networks", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public Dot11AvailableNetworks[] Networks { get; set; }
+
+    }
+
+    [XmlRoot("SendAuxiliaryCommand", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SendAuxiliaryCommandRequest
+    {
+        [XmlElement("AuxiliaryCommand", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public string AuxiliaryCommand { get; set; }
+
+    }
+
+    [XmlRoot("SendAuxiliaryCommandResponse", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SendAuxiliaryCommandResponse
+    {
+        [XmlElement("AuxiliaryCommandResponse", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public string AuxiliaryCommandResponse { get; set; }
+
+    }
+
+    [XmlRoot("SetAccessPolicy", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetAccessPolicyRequest
+    {
+        [XmlElement("PolicyFile", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public BinaryData PolicyFile { get; set; }
+
+    }
+
+    [XmlRoot("SetAccessPolicyResponse", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetAccessPolicyResponse
+    {
+    }
+
+    [XmlRoot("SetAuthFailureWarningConfiguration", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetAuthFailureWarningConfigurationRequest
+    {
+        [XmlElement("Enabled", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public bool Enabled { get; set; }
+
+        [XmlElement("MonitorPeriod", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public int MonitorPeriod { get; set; }
+
+        [XmlElement("MaxAuthFailures", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public int MaxAuthFailures { get; set; }
+
+    }
+
+    [XmlRoot("SetAuthFailureWarningConfigurationResponse", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetAuthFailureWarningConfigurationResponse
+    {
+    }
+
+    [XmlRoot("SetCertificatesStatus", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetCertificatesStatusRequest
+    {
+        [XmlElement("CertificateStatus", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public CertificateStatus[] CertificateStatus { get; set; }
+
+    }
+
+    [XmlRoot("SetCertificatesStatusResponse", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetCertificatesStatusResponse
+    {
+    }
+
+    [XmlRoot("SetClientCertificateMode", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetClientCertificateModeRequest
+    {
+        [XmlElement("Enabled", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public bool Enabled { get; set; }
+
+    }
+
+    [XmlRoot("SetClientCertificateModeResponse", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetClientCertificateModeResponse
+    {
+    }
+
+    [XmlRoot("SetDiscoveryMode", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetDiscoveryModeRequest
+    {
+        [XmlElement("DiscoveryMode", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public DiscoveryMode DiscoveryMode { get; set; }
+
+    }
+
+    [XmlRoot("SetDiscoveryModeResponse", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetDiscoveryModeResponse
+    {
+    }
+
+    [XmlRoot("SetDNS", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetDNSRequest
+    {
+        [XmlElement("FromDHCP", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public bool FromDHCP { get; set; }
+
+        [XmlElement("SearchDomain", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public string[] SearchDomain { get; set; }
+
+        [XmlElement("DNSManual", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public IPAddress[] DNSManual { get; set; }
+
+    }
+
+    [XmlRoot("SetDNSResponse", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetDNSResponse
+    {
+    }
+
+    [XmlRoot("SetDot1XConfiguration", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetDot1XConfigurationRequest
+    {
+        [XmlElement("Dot1XConfiguration", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public Dot1XConfiguration Dot1XConfiguration { get; set; }
+
+    }
+
+    [XmlRoot("SetDot1XConfigurationResponse", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetDot1XConfigurationResponse
+    {
+    }
+
+    [XmlRoot("SetDPAddresses", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetDPAddressesRequest
+    {
+        [XmlElement("DPAddress", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public NetworkHost[] DPAddress { get; set; }
+
+    }
+
+    [XmlRoot("SetDPAddressesResponse", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetDPAddressesResponse
+    {
+    }
+
+    [XmlRoot("SetDynamicDNS", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetDynamicDNSRequest
+    {
+        [XmlElement("Type", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public DynamicDNSType Type { get; set; }
+
+        [XmlElement("Name", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public string Name { get; set; }
+
+        [XmlElement("TTL", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public string TTL { get; set; }
+
+    }
+
+    [XmlRoot("SetDynamicDNSResponse", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetDynamicDNSResponse
+    {
+    }
+
+    [XmlRoot("SetGeoLocation", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetGeoLocationRequest
+    {
+        [XmlElement("Location", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public LocationEntity[] Location { get; set; }
+
+    }
+
+    [XmlRoot("SetGeoLocationResponse", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetGeoLocationResponse
+    {
+    }
+
+    [XmlRoot("SetHashingAlgorithm", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetHashingAlgorithmRequest
+    {
+        [XmlElement("Algorithm", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public string Algorithm { get; set; }
+
+    }
+
+    [XmlRoot("SetHashingAlgorithmResponse", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetHashingAlgorithmResponse
+    {
+    }
+
+    [XmlRoot("SetHostname", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetHostnameRequest
+    {
+        [XmlElement("Name", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public string Name { get; set; }
+
+    }
+
+    [XmlRoot("SetHostnameResponse", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetHostnameResponse
+    {
+    }
+
+    [XmlRoot("SetHostnameFromDHCP", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetHostnameFromDHCPRequest
+    {
+        [XmlElement("FromDHCP", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public bool FromDHCP { get; set; }
+
+    }
+
+    [XmlRoot("SetHostnameFromDHCPResponse", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetHostnameFromDHCPResponse
+    {
+        [XmlElement("RebootNeeded", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public bool RebootNeeded { get; set; }
+
+    }
+
+    [XmlRoot("SetIPAddressFilter", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetIPAddressFilterRequest
+    {
+        [XmlElement("IPAddressFilter", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public IPAddressFilter IPAddressFilter { get; set; }
+
+    }
+
+    [XmlRoot("SetIPAddressFilterResponse", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetIPAddressFilterResponse
+    {
+    }
+
+    [XmlRoot("SetNetworkDefaultGateway", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetNetworkDefaultGatewayRequest
+    {
+        [XmlElement("IPv4Address", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public string[] IPv4Address { get; set; }
+
+        [XmlElement("IPv6Address", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public string[] IPv6Address { get; set; }
+
+    }
+
+    [XmlRoot("SetNetworkDefaultGatewayResponse", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetNetworkDefaultGatewayResponse
+    {
+    }
+
+    [XmlRoot("SetNetworkInterfaces", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetNetworkInterfacesRequest
+    {
+        [XmlElement("InterfaceToken", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public string InterfaceToken { get; set; }
+
+        [XmlElement("NetworkInterface", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public NetworkInterfaceSetConfiguration NetworkInterface { get; set; }
+
+    }
+
+    [XmlRoot("SetNetworkInterfacesResponse", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetNetworkInterfacesResponse
+    {
+        [XmlElement("RebootNeeded", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public bool RebootNeeded { get; set; }
+
+    }
+
+    [XmlRoot("SetNetworkProtocols", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetNetworkProtocolsRequest
+    {
+        [XmlElement("NetworkProtocols", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public NetworkProtocol[] NetworkProtocols { get; set; }
+
+    }
+
+    [XmlRoot("SetNetworkProtocolsResponse", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetNetworkProtocolsResponse
+    {
+    }
+
+    [XmlRoot("SetNTP", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetNTPRequest
+    {
+        [XmlElement("FromDHCP", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public bool FromDHCP { get; set; }
+
+        [XmlElement("NTPManual", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public NetworkHost[] NTPManual { get; set; }
+
+    }
+
+    [XmlRoot("SetNTPResponse", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetNTPResponse
+    {
+    }
+
+    [XmlRoot("SetPasswordComplexityConfiguration", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetPasswordComplexityConfigurationRequest
+    {
+        [XmlElement("MinLen", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public int? MinLen { get; set; }
+
+        [XmlElement("Uppercase", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public int? Uppercase { get; set; }
+
+        [XmlElement("Number", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public int? Number { get; set; }
+
+        [XmlElement("SpecialChars", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public int? SpecialChars { get; set; }
+
+        [XmlElement("BlockUsernameOccurrence", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public bool? BlockUsernameOccurrence { get; set; }
+
+        [XmlElement("PolicyConfigurationLocked", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public bool? PolicyConfigurationLocked { get; set; }
+
+    }
+
+    [XmlRoot("SetPasswordComplexityConfigurationResponse", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetPasswordComplexityConfigurationResponse
+    {
+    }
+
+    [XmlRoot("SetPasswordHistoryConfiguration", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetPasswordHistoryConfigurationRequest
+    {
+        [XmlElement("Enabled", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public bool Enabled { get; set; }
+
+        [XmlElement("Length", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public int Length { get; set; }
+
+    }
+
+    [XmlRoot("SetPasswordHistoryConfigurationResponse", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetPasswordHistoryConfigurationResponse
+    {
+    }
+
+    [XmlRoot("SetRelayOutputSettings", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetRelayOutputSettingsRequest
+    {
+        [XmlElement("RelayOutputToken", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public string RelayOutputToken { get; set; }
+
+        [XmlElement("Properties", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public RelayOutputSettings Properties { get; set; }
+
+    }
+
+    [XmlRoot("SetRelayOutputSettingsResponse", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetRelayOutputSettingsResponse
+    {
+    }
+
+    [XmlRoot("SetRelayOutputState", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetRelayOutputStateRequest
+    {
+        [XmlElement("RelayOutputToken", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public string RelayOutputToken { get; set; }
+
+        [XmlElement("LogicalState", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public string LogicalState { get; set; }
+
+    }
+
+    [XmlRoot("SetRelayOutputStateResponse", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetRelayOutputStateResponse
+    {
+    }
+
+    [XmlRoot("SetRemoteDiscoveryMode", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetRemoteDiscoveryModeRequest
+    {
+        [XmlElement("RemoteDiscoveryMode", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public DiscoveryMode RemoteDiscoveryMode { get; set; }
+
+    }
+
+    [XmlRoot("SetRemoteDiscoveryModeResponse", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetRemoteDiscoveryModeResponse
+    {
+    }
+
+    [XmlRoot("SetRemoteUser", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetRemoteUserRequest
+    {
+        [XmlElement("RemoteUser", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public RemoteUser RemoteUser { get; set; }
+
+    }
+
+    [XmlRoot("SetRemoteUserResponse", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetRemoteUserResponse
+    {
+    }
+
+    [XmlRoot("SetScopes", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetScopesRequest
+    {
+        [XmlElement("Scopes", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public string[] Scopes { get; set; }
+
+    }
+
+    [XmlRoot("SetScopesResponse", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetScopesResponse
+    {
+    }
+
+    [XmlRoot("SetStorageConfiguration", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetStorageConfigurationRequest
+    {
+        [XmlElement("StorageConfiguration", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public StorageConfiguration StorageConfiguration { get; set; }
+
+    }
+
+    [XmlRoot("SetStorageConfigurationResponse", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetStorageConfigurationResponse
+    {
+    }
+
+    [XmlRoot("SetSystemDateAndTime", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetSystemDateAndTimeRequest
+    {
+        [XmlElement("DateTimeType", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public SetDateTimeType DateTimeType { get; set; }
+
+        [XmlElement("DaylightSavings", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public bool DaylightSavings { get; set; }
+
+        [XmlElement("TimeZone", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public DeviceTimeZone TimeZone { get; set; }
+
+        [XmlElement("UTCDateTime", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public DeviceDateTime UTCDateTime { get; set; }
+
+    }
+
+    [XmlRoot("SetSystemDateAndTimeResponse", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetSystemDateAndTimeResponse
+    {
+    }
+
+    [XmlRoot("SetSystemFactoryDefault", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetSystemFactoryDefaultRequest
+    {
+        [XmlElement("FactoryDefault", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public string FactoryDefault { get; set; }
+
+    }
+
+    [XmlRoot("SetSystemFactoryDefaultResponse", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetSystemFactoryDefaultResponse
+    {
+    }
+
+    [XmlRoot("SetUser", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetUserRequest
+    {
+        [XmlElement("User", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public OnvifUser[] User { get; set; }
+
+    }
+
+    [XmlRoot("SetUserResponse", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetUserResponse
+    {
+    }
+
+    [XmlRoot("SetUserRole", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetUserRoleRequest
+    {
+        [XmlElement("UserRole", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public UserRole UserRole { get; set; }
+
+    }
+
+    [XmlRoot("SetUserRoleResponse", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetUserRoleResponse
+    {
+    }
+
+    [XmlRoot("SetZeroConfiguration", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetZeroConfigurationRequest
+    {
+        [XmlElement("InterfaceToken", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public string InterfaceToken { get; set; }
+
+        [XmlElement("Enabled", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public bool Enabled { get; set; }
+
+    }
+
+    [XmlRoot("SetZeroConfigurationResponse", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SetZeroConfigurationResponse
+    {
+    }
+
+    [XmlRoot("StartFirmwareUpgrade", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class StartFirmwareUpgradeRequest
+    {
+    }
+
+    [XmlRoot("StartFirmwareUpgradeResponse", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class StartFirmwareUpgradeResponse
+    {
+        [XmlElement("UploadUri", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public string UploadUri { get; set; }
+
+        [XmlElement("UploadDelay", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public string UploadDelay { get; set; }
+
+        [XmlElement("ExpectedDownTime", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public string ExpectedDownTime { get; set; }
+
+    }
+
+    [XmlRoot("StartSystemRestore", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class StartSystemRestoreRequest
+    {
+    }
+
+    [XmlRoot("StartSystemRestoreResponse", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class StartSystemRestoreResponse
+    {
+        [XmlElement("UploadUri", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public string UploadUri { get; set; }
+
+        [XmlElement("ExpectedDownTime", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public string ExpectedDownTime { get; set; }
+
+    }
+
+    [XmlRoot("SystemReboot", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SystemRebootRequest
+    {
+    }
+
+    [XmlRoot("SystemRebootResponse", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class SystemRebootResponse
+    {
+        [XmlElement("Message", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public string Message { get; set; }
+
+    }
+
+    [XmlRoot("UpgradeFirmware", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class UpgradeFirmwareRequest
+    {
+        [XmlElement("Version", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public string Version { get; set; }
+
+    }
+
+    [XmlRoot("UpgradeFirmwareResponse", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class UpgradeFirmwareResponse
+    {
+        [XmlElement("ExpectedDownTime", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public string ExpectedDownTime { get; set; }
+
+    }
+
+    [XmlRoot("UpgradeSystemFirmware", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class UpgradeSystemFirmwareRequest
+    {
+        [XmlElement("Firmware", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public AttachmentData Firmware { get; set; }
+
+    }
+
+    [XmlRoot("UpgradeSystemFirmwareResponse", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    public class UpgradeSystemFirmwareResponse
+    {
+        [XmlElement("Message", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+        public string Message { get; set; }
+
+    }
+
+
+    public class CertificateWithPrivateKey
+    {
+        [XmlElement("CertificateID", Namespace = "http://www.onvif.org/ver10/schema")]
+        public string CertificateID { get; set; }
+
+        [XmlElement("Certificate", Namespace = "http://www.onvif.org/ver10/schema")]
+        public BinaryData Certificate { get; set; }
+
+        [XmlElement("PrivateKey", Namespace = "http://www.onvif.org/ver10/schema")]
+        public BinaryData PrivateKey { get; set; }
+    }
+
+    public class Dot11AvailableNetworks
+    {
+        [XmlElement("SSID", Namespace = "http://www.onvif.org/ver10/schema")]
+        public string SSID { get; set; }
+
+        [XmlElement("BSSID", Namespace = "http://www.onvif.org/ver10/schema")]
+        public string BSSID { get; set; }
+
+        [XmlElement("AuthAndMangementSuite", Namespace = "http://www.onvif.org/ver10/schema")]
+        public string[] AuthAndMangementSuite { get; set; }
+
+        [XmlElement("PairCipher", Namespace = "http://www.onvif.org/ver10/schema")]
+        public string[] PairCipher { get; set; }
+
+        [XmlElement("GroupCipher", Namespace = "http://www.onvif.org/ver10/schema")]
+        public string[] GroupCipher { get; set; }
+
+        [XmlElement("SignalStrength", Namespace = "http://www.onvif.org/ver10/schema")]
+        public string SignalStrength { get; set; }
+
+        [XmlElement("Extension", Namespace = "http://www.onvif.org/ver10/schema")]
+        public Dot11AvailableNetworksExtension Extension { get; set; }
+
+        [XmlAnyAttribute]
+        public XmlAttribute[] AnyAttribute { get; set; }
+    }
+
+    public class Dot11AvailableNetworksExtension
+    {
+        [XmlAnyElement]
+        public XmlElement[] Any { get; set; }
+    }
+
+    public class NetworkInterfaceSetConfiguration
+    {
+        [XmlElement("Enabled", Namespace = "http://www.onvif.org/ver10/schema")]
+        public bool? Enabled { get; set; }
+
+        [XmlElement("Link", Namespace = "http://www.onvif.org/ver10/schema")]
+        public NetworkInterfaceConnectionSetting Link { get; set; }
+
+        [XmlElement("MTU", Namespace = "http://www.onvif.org/ver10/schema")]
+        public int? MTU { get; set; }
+
+        [XmlElement("IPv4", Namespace = "http://www.onvif.org/ver10/schema")]
+        public IPv4NetworkInterfaceSetConfiguration IPv4 { get; set; }
+
+        [XmlElement("IPv6", Namespace = "http://www.onvif.org/ver10/schema")]
+        public IPv6NetworkInterfaceSetConfiguration IPv6 { get; set; }
+
+        [XmlElement("Extension", Namespace = "http://www.onvif.org/ver10/schema")]
+        public NetworkInterfaceSetConfigurationExtension Extension { get; set; }
+
+        [XmlAnyAttribute]
+        public XmlAttribute[] AnyAttribute { get; set; }
+    }
+
+    public class NetworkInterfaceConnectionSetting
+    {
+        [XmlElement("AutoNegotiation", Namespace = "http://www.onvif.org/ver10/schema")]
+        public bool AutoNegotiation { get; set; }
+
+        [XmlElement("Speed", Namespace = "http://www.onvif.org/ver10/schema")]
+        public int Speed { get; set; }
+
+        [XmlElement("Duplex", Namespace = "http://www.onvif.org/ver10/schema")]
+        public Duplex Duplex { get; set; }
+    }
+
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
+    public enum Duplex
+    {
+        Full,
+        Half,
+    }
+
+    public class IPv4NetworkInterfaceSetConfiguration
+    {
+        [XmlElement("Enabled", Namespace = "http://www.onvif.org/ver10/schema")]
+        public bool? Enabled { get; set; }
+
+        [XmlElement("Manual", Namespace = "http://www.onvif.org/ver10/schema")]
+        public PrefixedIPv4Address[] Manual { get; set; }
+
+        [XmlElement("DHCP", Namespace = "http://www.onvif.org/ver10/schema")]
+        public bool? DHCP { get; set; }
+    }
+
+    public class IPv6NetworkInterfaceSetConfiguration
+    {
+        [XmlElement("Enabled", Namespace = "http://www.onvif.org/ver10/schema")]
+        public bool? Enabled { get; set; }
+
+        [XmlElement("AcceptRouterAdvert", Namespace = "http://www.onvif.org/ver10/schema")]
+        public bool? AcceptRouterAdvert { get; set; }
+
+        [XmlElement("Manual", Namespace = "http://www.onvif.org/ver10/schema")]
+        public PrefixedIPv6Address[] Manual { get; set; }
+
+        [XmlElement("DHCP", Namespace = "http://www.onvif.org/ver10/schema")]
+        public string DHCP { get; set; }
+    }
+
+    public class NetworkInterfaceSetConfigurationExtension
+    {
+        [XmlAnyElement]
+        public XmlElement[] Any { get; set; }
+
+        [XmlElement("Dot3", Namespace = "http://www.onvif.org/ver10/schema")]
+        public Dot3Configuration[] Dot3 { get; set; }
+
+        [XmlElement("Dot11", Namespace = "http://www.onvif.org/ver10/schema")]
+        public Dot11Configuration[] Dot11 { get; set; }
+
+        [XmlElement("Extension", Namespace = "http://www.onvif.org/ver10/schema")]
+        public NetworkInterfaceSetConfigurationExtension2 Extension { get; set; }
+    }
+
+    public class NetworkInterfaceSetConfigurationExtension2
+    {
+        [XmlAnyElement]
+        public XmlElement[] Any { get; set; }
+    }
+
+    public class Dot3Configuration
+    {
+        [XmlAnyElement]
+        public XmlElement[] Any { get; set; }
+
+        [XmlAnyAttribute]
+        public XmlAttribute[] AnyAttribute { get; set; }
+    }
+
+    public class Dot11Configuration
+    {
+        [XmlElement("SSID", Namespace = "http://www.onvif.org/ver10/schema")]
+        public string SSID { get; set; }
+
+        [XmlElement("Mode", Namespace = "http://www.onvif.org/ver10/schema")]
+        public string Mode { get; set; }
+
+        [XmlElement("Alias", Namespace = "http://www.onvif.org/ver10/schema")]
+        public string Alias { get; set; }
+
+        [XmlElement("Priority", Namespace = "http://www.onvif.org/ver10/schema")]
+        public int Priority { get; set; }
+
+        [XmlElement("Security", Namespace = "http://www.onvif.org/ver10/schema")]
+        public Dot11SecurityConfiguration Security { get; set; }
+
+        [XmlAnyElement]
+        public XmlElement[] Any { get; set; }
+
+        [XmlAnyAttribute]
+        public XmlAttribute[] AnyAttribute { get; set; }
+    }
+
+    public class Dot11SecurityConfiguration
+    {
+        [XmlElement("Mode", Namespace = "http://www.onvif.org/ver10/schema")]
+        public string Mode { get; set; }
+
+        [XmlElement("Algorithm", Namespace = "http://www.onvif.org/ver10/schema")]
+        public string Algorithm { get; set; }
+
+        [XmlElement("PSK", Namespace = "http://www.onvif.org/ver10/schema")]
+        public Dot11PSKSet PSK { get; set; }
+
+        [XmlElement("Dot1X", Namespace = "http://www.onvif.org/ver10/schema")]
+        public string Dot1X { get; set; }
+
+        [XmlElement("Extension", Namespace = "http://www.onvif.org/ver10/schema")]
+        public Dot11SecurityConfigurationExtension Extension { get; set; }
+
+        [XmlAnyAttribute]
+        public XmlAttribute[] AnyAttribute { get; set; }
+    }
+
+    public class Dot11SecurityConfigurationExtension
+    {
+        [XmlAnyElement]
+        public XmlElement[] Any { get; set; }
+
+        [XmlAnyAttribute]
+        public XmlAttribute[] AnyAttribute { get; set; }
+    }
+
+    public class Dot11PSKSet
+    {
+        [XmlElement("Key", Namespace = "http://www.onvif.org/ver10/schema")]
+        public string Key { get; set; }
+
+        [XmlElement("Passphrase", Namespace = "http://www.onvif.org/ver10/schema")]
+        public string Passphrase { get; set; }
+
+        [XmlElement("Extension", Namespace = "http://www.onvif.org/ver10/schema")]
+        public Dot11PSKSetExtension Extension { get; set; }
+
+        [XmlAnyAttribute]
+        public XmlAttribute[] AnyAttribute { get; set; }
+    }
+
+    public class Dot11PSKSetExtension
+    {
+        [XmlAnyElement]
+        public XmlElement[] Any { get; set; }
+    }
+
+    public class RelayOutputSettings
+    {
+        [XmlElement("Mode", Namespace = "http://www.onvif.org/ver10/schema")]
+        public RelayMode Mode { get; set; }
+
+        [XmlElement("DelayTime", Namespace = "http://www.onvif.org/ver10/schema")]
+        public string DelayTime { get; set; }
+
+        [XmlElement("IdleState", Namespace = "http://www.onvif.org/ver10/schema")]
+        public RelayIdleState IdleState { get; set; }
+    }
+
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
+    public enum RelayMode
+    {
+        Monostable,
+        Bistable,
+    }
+
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
+    public enum RelayIdleState
+    {
+        closed,
+        open,
     }
 }
