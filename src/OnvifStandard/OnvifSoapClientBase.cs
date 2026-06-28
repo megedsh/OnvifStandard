@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -13,6 +13,7 @@ namespace OnvifStandard
 {
     public abstract class OnvifSoapClientBase
     {
+        private readonly XmlSerializer m_envelopeSerializer = new XmlSerializer(typeof(SoapEnvelope));
         public SoapClient SoapClient { get; set; }
         public Uri ServiceUri { get; set; }
         public string User { get; set; }
@@ -32,7 +33,11 @@ namespace OnvifStandard
 
             if (!httpResponseMessage.IsSuccessStatusCode)
             {
-                await httpResponseMessage.Content.ReadAsStringAsync();
+                string r = await httpResponseMessage.Content.ReadAsStringAsync();
+                if (!r.Contains("Fault"))
+                {
+                    httpResponseMessage.EnsureSuccessStatusCode();
+                }
             }
 
             if (typeof(TRes) == typeof(HttpResponseMessage))
@@ -40,12 +45,24 @@ namespace OnvifStandard
                 return (TRes)(object)httpResponseMessage;
             }
 
-            XmlSerializer serializer = new XmlSerializer(typeof(SoapEnvelope));
-            Stream result = await httpResponseMessage.Content.ReadAsStreamAsync();
-            SoapEnvelope deserialize = (SoapEnvelope)serializer.Deserialize(result);
-
-            TRes res = deserialize.GetFromEnvelope<TRes>(throwOnFault);
+            SoapEnvelope envelope = await getEnvelope(httpResponseMessage);
+            TRes res = envelope.GetFromEnvelope<TRes>(throwOnFault);
             return res;
+        }
+
+        private async Task<SoapEnvelope> getEnvelope(HttpResponseMessage httpResponseMessage)
+        {
+            try
+            {
+                Stream result = await httpResponseMessage.Content.ReadAsStreamAsync();
+                SoapEnvelope deserialize = (SoapEnvelope)m_envelopeSerializer.Deserialize(result);
+                return deserialize;
+            }
+            catch (Exception e)
+            {
+                string contentBody = await httpResponseMessage.Content.ReadAsStringAsync();
+                throw new InvalidOperationException($"Failed to deserialize SOAP response into type {typeof(SoapEnvelope).Name}. Response content: {contentBody}", e);
+            }
         }
 
         protected SoapSecurityHeader getSecurityHeader() => SoapSecurityHeader.Create(User, Password);
