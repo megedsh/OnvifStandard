@@ -9,126 +9,76 @@ namespace OnvifStandard.Imaging
     {
         private Uri serviceUri => ServiceUri ?? throw new InvalidOperationException("ServiceUri must be set.");
 
-        public Task<GetServiceCapabilitiesResponse> GetServiceCapabilities()
-        {
-            GetServiceCapabilitiesRequest request = new GetServiceCapabilitiesRequest();
-            SoapSecurityHeader securityHeader = getSecurityHeader();
+        public Task<GetServiceCapabilitiesResponse> GetServiceCapabilities() => send<GetServiceCapabilitiesRequest, GetServiceCapabilitiesResponse>(new GetServiceCapabilitiesRequest());
 
-            return doRequestAwaitResponse<GetServiceCapabilitiesRequest, GetServiceCapabilitiesResponse>(serviceUri, request, securityHeader);
-        }
-
-        public Task<GetImagingSettingsResponse> GetImagingSettings(string videoSourceToken)
-        {
-            GetImagingSettingsRequest request = new GetImagingSettingsRequest
+        public Task<GetImagingSettingsResponse> GetImagingSettings(string videoSourceToken) =>
+            send<GetImagingSettingsRequest, GetImagingSettingsResponse>(new GetImagingSettingsRequest
             {
                 VideoSourceToken = videoSourceToken
-            };
-            SoapSecurityHeader securityHeader = getSecurityHeader();
+            });
 
-            return doRequestAwaitResponse<GetImagingSettingsRequest, GetImagingSettingsResponse>(serviceUri, request, securityHeader);
-        }
-
-        public Task<SetImagingSettingsResponse> SetImagingSettings(string videoSourceToken, ImagingSettings20 imagingSettings, bool? forcePersistence = null)
-        {
-            SetImagingSettingsRequest request = new SetImagingSettingsRequest
+        public Task<SetImagingSettingsResponse> SetImagingSettings(string videoSourceToken, ImagingSettings20 imagingSettings, bool? forcePersistence = null) =>
+            send<SetImagingSettingsRequest, SetImagingSettingsResponse>(new SetImagingSettingsRequest
             {
                 VideoSourceToken = videoSourceToken,
                 ImagingSettings = imagingSettings,
                 ForcePersistence = forcePersistence
-            };
-            SoapSecurityHeader securityHeader = getSecurityHeader();
+            });
 
-            return doRequestAwaitResponse<SetImagingSettingsRequest, SetImagingSettingsResponse>(serviceUri, request, securityHeader);
-        }
-
-        public Task<GetOptionsResponse> GetOptions(string videoSourceToken)
-        {
-            GetOptionsRequest request = new GetOptionsRequest
+        public Task<GetOptionsResponse> GetOptions(string videoSourceToken) =>
+            send<GetOptionsRequest, GetOptionsResponse>(new GetOptionsRequest
             {
                 VideoSourceToken = videoSourceToken
-            };
-            SoapSecurityHeader securityHeader = getSecurityHeader();
+            });
 
-            return doRequestAwaitResponse<GetOptionsRequest, GetOptionsResponse>(serviceUri, request, securityHeader);
-        }
-
-        public Task<GetMoveOptionsResponse> GetMoveOptions(string videoSourceToken)
-        {
-            GetMoveOptionsRequest request = new GetMoveOptionsRequest
+        public Task<GetMoveOptionsResponse> GetMoveOptions(string videoSourceToken) =>
+            send<GetMoveOptionsRequest, GetMoveOptionsResponse>(new GetMoveOptionsRequest
             {
                 VideoSourceToken = videoSourceToken
-            };
-            SoapSecurityHeader securityHeader = getSecurityHeader();
+            });
 
-            return doRequestAwaitResponse<GetMoveOptionsRequest, GetMoveOptionsResponse>(serviceUri, request, securityHeader);
-        }
-
-        public Task<MoveResponse> Move(string videoSourceToken, FocusMove focus)
-        {
-            MoveRequest request = new MoveRequest
+        public Task<MoveResponse> Move(string videoSourceToken, FocusMove focus) =>
+            send<MoveRequest, MoveResponse>(new MoveRequest
             {
                 VideoSourceToken = videoSourceToken,
                 Focus = focus
-            };
-            SoapSecurityHeader securityHeader = getSecurityHeader();
+            });
 
-            return doRequestAwaitResponse<MoveRequest, MoveResponse>(serviceUri, request, securityHeader);
-        }
-
-        public Task<StopResponse> Stop(string videoSourceToken)
-        {
-            StopRequest request = new StopRequest
+        public Task<StopResponse> Stop(string videoSourceToken) =>
+            send<StopRequest, StopResponse>(new StopRequest
             {
                 VideoSourceToken = videoSourceToken
-            };
-            SoapSecurityHeader securityHeader = getSecurityHeader();
+            });
 
-            return doRequestAwaitResponse<StopRequest, StopResponse>(serviceUri, request, securityHeader);
-        }
-
-        public Task<GetStatusResponse> GetStatus(string videoSourceToken)
-        {
-            GetStatusRequest request = new GetStatusRequest
+        public Task<GetStatusResponse> GetStatus(string videoSourceToken) =>
+            send<GetStatusRequest, GetStatusResponse>(new GetStatusRequest
             {
                 VideoSourceToken = videoSourceToken
-            };
-            SoapSecurityHeader securityHeader = getSecurityHeader();
+            });
 
-            return doRequestAwaitResponse<GetStatusRequest, GetStatusResponse>(serviceUri, request, securityHeader);
-        }
-
-        public Task<GetPresetsResponse> GetPresets(string videoSourceToken)
-        {
-            GetPresetsRequest request = new GetPresetsRequest
+        public Task<GetPresetsResponse> GetPresets(string videoSourceToken) =>
+            send<GetPresetsRequest, GetPresetsResponse>(new GetPresetsRequest
             {
                 VideoSourceToken = videoSourceToken
-            };
-            SoapSecurityHeader securityHeader = getSecurityHeader();
+            });
 
-            return doRequestAwaitResponse<GetPresetsRequest, GetPresetsResponse>(serviceUri, request, securityHeader);
-        }
-
-        public Task<GetCurrentPresetResponse> GetCurrentPreset(string videoSourceToken)
-        {
-            GetCurrentPresetRequest request = new GetCurrentPresetRequest
+        public Task<GetCurrentPresetResponse> GetCurrentPreset(string videoSourceToken) =>
+            send<GetCurrentPresetRequest, GetCurrentPresetResponse>(new GetCurrentPresetRequest
             {
                 VideoSourceToken = videoSourceToken
-            };
-            SoapSecurityHeader securityHeader = getSecurityHeader();
+            });
 
-            return doRequestAwaitResponse<GetCurrentPresetRequest, GetCurrentPresetResponse>(serviceUri, request, securityHeader);
-        }
-
-        public Task<SetCurrentPresetResponse> SetCurrentPreset(string videoSourceToken, string presetToken)
-        {
-            SetCurrentPresetRequest request = new SetCurrentPresetRequest
+        public Task<SetCurrentPresetResponse> SetCurrentPreset(string videoSourceToken, string presetToken) =>
+            send<SetCurrentPresetRequest, SetCurrentPresetResponse>(new SetCurrentPresetRequest
             {
                 VideoSourceToken = videoSourceToken,
                 PresetToken = presetToken
-            };
-            SoapSecurityHeader securityHeader = getSecurityHeader();
+            });
 
-            return doRequestAwaitResponse<SetCurrentPresetRequest, SetCurrentPresetResponse>(serviceUri, request, securityHeader);
+        private Task<TRes> send<TReq, TRes>(TReq request)
+        {
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+            return doRequestAwaitResponse<TReq, TRes>(serviceUri, request, securityHeader);
         }
     }
 }
