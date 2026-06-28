@@ -1,33 +1,80 @@
-[![License](https://img.shields.io/github/license/megedsh/OnvifStandard.svg)](https://github.com/megedsh/OnvifStandard/blob/master/LICENSE.txt) 
-[![NuGet](https://img.shields.io/nuget/v/OnvifStandard.svg)](https://nuget.org/packages/OnvifStandard) 
+﻿[![License](https://img.shields.io/github/license/megedsh/OnvifStandard.svg)](https://github.com/megedsh/OnvifStandard/blob/master/LICENSE.txt)
+[![NuGet](https://img.shields.io/nuget/v/OnvifStandard.svg)](https://nuget.org/packages/OnvifStandard)
 
 <img src="Icon.png" width="300">
 
-# OnvifStandard
+# 🌐 OnvifStandard — Modern ONVIF for .NET (No WCF)
 
-A .NET Standard 2.0 library for interacting with ONVIF-compliant devices (such as IP cameras) using SOAP over HTTP.  
-**This library does not use WCF bindings** and instead leverages the [`SoapHttpClient`](https://github.com/pmorelli92/SoapHttpClient) package for SOAP communication.
+A **.NET Standard 2.0** library for interacting with ONVIF‑compliant devices (IP cameras, NVRs, encoders) using **SOAP over HTTP** — **without WCF bindings**.  
+Built for modern .NET, lightweight, and easy to extend.
 
-## Features
+---
 
-- Pure .NET Standard 2.0 implementation
-- No WCF dependencies or bindings
-- Supports ONVIF Device, Media, Imaging, and PTZ services
+## ✨ Features
+- Pure **.NET Standard 2.0** implementation  
+- **No WCF**, no generated bindings  
+- Uses the excellent [`SoapHttpClient`](https://github.com/pmorelli92/SoapHttpClient)  
+- Supports:
+  - Device Service  
+  - Media Service  
+  - Imaging Service  
+  - PTZ Service  
 
-## Reasons
-- The reason for creating this library is that all other libs that I tried all used generated WCF bindings that started having compatibility issues with latest .net components.
-- Most use WSDL code generation done by `svcutil` or `dotnet-svcutil` which creates WCF clients and Dtos.
-- Using AI I can now generate the code for the ONVIF services and messages without WCF bindings.
-- This library provides a modern, lightweight alternative for developers who need to interact with ONVIF devices without relying on outdated WCF bindings.
+---
 
-## Support
-- Not every ONVIF device implements all services, so if you have a device that is not working with this library please open an issue and I will try to add support for it.
-- Most of the code is AI generated, some functions might not work out of the box, I tested just the features I needed. report any issues and I will try to fix them.
+## 💡 Why This Library Exists
+I couldn’t find a modern, lightweight ONVIF library for .NET that didn’t rely on WCF.
+Most ONVIF libraries rely on WCF bindings generated via `svcutil` or `dotnet-svcutil`.  
+With modern tooling (including AI-assisted code generation), ONVIF services can be implemented **cleanly**, **manually**, and **without WCF**.  
+This project aims to be a **modern, lightweight alternative** for developers who want ONVIF support without legacy baggage.
 
-## Known Issues
-- This is not a video streaming lib - it is a library for interacting with ONVIF devices using SOAP over HTTP. If you need to stream video, you will need to use another library or implement the streaming functionality yourself.
-- Some ONVIF devices have non-standard implementations of the ONVIF protocol, which may cause compatibility issues. If you encounter any issues, please report them and I will try to address them.
+---
 
-## Acknowledgements
-- This library is inspired by the work of other ONVIF libraries and the ONVIF standard itself.
-- The [`SoapHttpClient`](https://github.com/pmorelli92/SoapHttpClient) package is used for SOAP communication, which is a lightweight alternative to WCF bindings. go give him a star.
+## 🛠️ Support & Compatibility
+ONVIF devices vary widely — many implement only parts of the spec, and some behave… creatively.
+
+If your device:
+- fails on a specific call  
+- returns unexpected SOAP responses  
+- needs a custom quirk or extension  
+
+👉 **Open an issue!**  
+I’ll help add support, and contributions are very welcome.
+
+Most of the code is AI‑generated, and only the features I needed are fully tested.  
+If something doesn’t work, report it — or send a PR.
+
+---
+
+## ⚠️ Known Limitations
+- **Not a video streaming library.**  
+  ONVIF provides RTSP URLs; you’ll need another library to decode or display video.
+- Some devices use **non‑standard ONVIF implementations**, which may require special handling.
+
+---
+
+## 🙏 Acknowledgements
+- Inspired by the ONVIF standard and existing ONVIF libraries.  
+- SOAP communication powered by [`SoapHttpClient`](https://github.com/pmorelli92/SoapHttpClient).  
+  Go give that project a star — it deserves it.
+
+---
+
+## 🤝 Want to Contribute?
+This project is intentionally simple and approachable — perfect for contributors.
+
+Ways you can help:
+- Add support for more ONVIF services  
+- Improve device compatibility  
+- Fix or refine AI‑generated DTOs  
+- Add tests  
+- Improve documentation  
+- Share device logs or quirks  
+
+A `CONTRIBUTING.md` will be added soon, but until then feel free to open issues or PRs.
+
+---
+
+## 🚀 Coming Soon (Community Roadmap)
+
+- More ONVIF services (Events, Analytics, Recording)  
