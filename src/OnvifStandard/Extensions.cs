@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Xml;
 using System.Xml.Serialization;
 
@@ -56,7 +56,7 @@ namespace OnvifStandard
                         throw;
                     }
 
-                    throw new InvalidOperationException($"Failed to deserialize SOAP response into type {typeof(T).Name}.", exception);
+                    throw new InvalidOperationException($"Failed to deserialize SOAP response into type {typeof(T).Name}. : content: {sourceBody.OuterXml}", exception);
                 }
             }
         }
