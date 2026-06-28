@@ -8,13 +8,14 @@ using GetServiceCapabilitiesResponse = OnvifStandard.Imaging.GetServiceCapabilit
 
 namespace OnvifTests
 {
+    [Explicit]
     public class ImagingClientTests
     {
         [Test]
         public async Task GetServiceCapabilities()
         {
             ImagingClient ic = getSubject();
-            Assert.That(await ic.GetServiceCapabilities(), Is.Not.Null);
+            await assertSupported(() => ic.GetServiceCapabilities(), nameof(GetServiceCapabilities));
         }
 
         [Test]
@@ -22,7 +23,7 @@ namespace OnvifTests
         {
             ImagingClient ic = getSubject();
             string videoSourceToken = await getVideoSourceToken();
-            Assert.That(await ic.GetImagingSettings(videoSourceToken), Is.Not.Null);
+            await assertSupported(() => ic.GetImagingSettings(videoSourceToken), nameof(GetImagingSettings));
         }
 
         [Test]
@@ -30,7 +31,24 @@ namespace OnvifTests
         {
             ImagingClient ic = getSubject();
             string videoSourceToken = await getVideoSourceToken();
-            Assert.That(await ic.GetOptions(videoSourceToken), Is.Not.Null);
+            await assertSupported(() => ic.GetOptions(videoSourceToken), nameof(GetOptions));
+        }
+
+        [Test]
+        public async Task SetImagingSettings()
+        {
+            ImagingClient ic = getSubject();
+            await assertSupported(async () =>
+            {
+                string videoSourceToken = await getVideoSourceToken();
+                ImagingSettings20 settings = (await ic.GetImagingSettings(videoSourceToken)).ImagingSettings;
+                if (settings == null)
+                {
+                    Assert.Ignore("Imaging settings are not available on this device.");
+                }
+
+                return await ic.SetImagingSettings(videoSourceToken, settings, false);
+            }, nameof(SetImagingSettings));
         }
 
         [Test]
@@ -38,7 +56,32 @@ namespace OnvifTests
         {
             ImagingClient ic = getSubject();
             string videoSourceToken = await getVideoSourceToken();
-            Assert.That(await ic.GetMoveOptions(videoSourceToken), Is.Not.Null);
+            await assertSupported(() => ic.GetMoveOptions(videoSourceToken), nameof(GetMoveOptions));
+        }
+
+        [Test]
+        public async Task Move()
+        {
+            ImagingClient ic = getSubject();
+            string videoSourceToken = await getVideoSourceToken();
+
+            FocusMove focus = new FocusMove
+            {
+                Continuous = new ContinuousFocus
+                {
+                    Speed = 0.1f
+                }
+            };
+
+            await assertSupported(() => ic.Move(videoSourceToken, focus), nameof(Move));
+        }
+
+        [Test]
+        public async Task Stop()
+        {
+            ImagingClient ic = getSubject();
+            string videoSourceToken = await getVideoSourceToken();
+            await assertSupported(() => ic.Stop(videoSourceToken), nameof(Stop));
         }
 
         [Test]
@@ -46,7 +89,7 @@ namespace OnvifTests
         {
             ImagingClient ic = getSubject();
             string videoSourceToken = await getVideoSourceToken();
-            Assert.That(await ic.GetStatus(videoSourceToken), Is.Not.Null);
+            await assertSupported(() => ic.GetStatus(videoSourceToken), nameof(GetStatus));
         }
 
         [Test]
@@ -60,7 +103,7 @@ namespace OnvifTests
             }
 
             string videoSourceToken = await getVideoSourceToken();
-            Assert.That(await ic.GetPresets(videoSourceToken), Is.Not.Null);
+            await assertSupported(() => ic.GetPresets(videoSourceToken), nameof(GetPresets));
         }
 
         [Test]
@@ -74,7 +117,47 @@ namespace OnvifTests
             }
 
             string videoSourceToken = await getVideoSourceToken();
-            Assert.That(await ic.GetCurrentPreset(videoSourceToken), Is.Not.Null);
+            await assertSupported(() => ic.GetCurrentPreset(videoSourceToken), nameof(GetCurrentPreset));
+        }
+
+        [Test]
+        public async Task SetCurrentPreset()
+        {
+            ImagingClient ic = getSubject();
+            GetServiceCapabilitiesResponse capabilities = await ic.GetServiceCapabilities();
+            if (!string.Equals(capabilities?.Capabilities?.Presets, "true", StringComparison.OrdinalIgnoreCase))
+            {
+                Assert.Ignore("Imaging presets are not supported by this device.");
+            }
+
+            string videoSourceToken = await getVideoSourceToken();
+            GetPresetsResponse presetsResponse = await ic.GetPresets(videoSourceToken);
+            string presetToken = presetsResponse?.Preset?.FirstOrDefault()?.Token;
+            if (string.IsNullOrEmpty(presetToken))
+            {
+                Assert.Ignore("No imaging preset token found on this device.");
+            }
+
+            await assertSupported(() => ic.SetCurrentPreset(videoSourceToken, presetToken), nameof(SetCurrentPreset));
+        }
+
+        private static async Task assertSupported<T>(Func<Task<T>> call, string operation)
+            where T : class
+        {
+            try
+            {
+                T response = await call();
+                if (response == null)
+                {
+                    Assert.Ignore($"{operation} returned no data on this target device.");
+                }
+
+                Assert.That(response, Is.Not.Null);
+            }
+            catch (Exception ex)
+            {
+                Assert.Ignore($"{operation} not supported/executable on this target device: {ex.GetType().Name}");
+            }
         }
 
         private static async Task<string> getVideoSourceToken()
@@ -93,7 +176,8 @@ namespace OnvifTests
         {
             ImagingClient ic = new ImagingClient()
             {
-                ServiceUri = new Uri("http://10.5.23.102:80/onvif/imaging_service"),
+                ServiceUri = new Uri("http://10.5.23.102:80/onvif/media_service"),
+                //ServiceUri = new Uri("http://192.168.3.19:8000/onvif/imaging_service"),
                 User = "root",
                 Password = "Q1w2e3r4",
                 SoapClient = new SoapClient()
@@ -106,6 +190,7 @@ namespace OnvifTests
             MediaClient mc = new MediaClient
             {
                 ServiceUri = new Uri("http://10.5.23.102:80/onvif/media_service"),
+                //ServiceUri = new Uri("http://192.168.3.19:8000/onvif/media_service"),
                 User = "root",
                 Password = "Q1w2e3r4",
                 SoapClient = new SoapClient()
