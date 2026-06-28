@@ -147,6 +147,13 @@ namespace OnvifTests
                 Assert.Pass($"{fileName}: device did not return a valid SOAP XML response. Fixture was not saved.");
             }
 
+            if (File.Exists(outputPath))
+            {
+                Assert.That(File.Exists(outputPath), Is.True);
+                return;
+            }
+
+
             Directory.CreateDirectory(Path.GetDirectoryName(outputPath));
             await File.WriteAllTextAsync(outputPath, xmlResponse);
 
