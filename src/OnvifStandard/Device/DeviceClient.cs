@@ -413,6 +413,342 @@ namespace OnvifStandard.Device
 
             return doRequestAwaitResponse<GetCapabilitiesRequest, GetCapabilitiesResponse>(serviceUri, getCapabilitiesRequest, securityHeader);
         }
+
+        public Task<AddIPAddressFilterResponse> AddIPAddressFilter(AddIPAddressFilterRequest addIPAddressFilterRequest)
+        {
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+            return doRequestAwaitResponse<AddIPAddressFilterRequest, AddIPAddressFilterResponse>(serviceUri, addIPAddressFilterRequest, securityHeader);
+        }
+
+        public Task<AddScopesResponse> AddScopes(AddScopesRequest addScopesRequest)
+        {
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+            return doRequestAwaitResponse<AddScopesRequest, AddScopesResponse>(serviceUri, addScopesRequest, securityHeader);
+        }
+
+        public Task<CreateCertificateResponse> CreateCertificate(CreateCertificateRequest createCertificateRequest)
+        {
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+            return doRequestAwaitResponse<CreateCertificateRequest, CreateCertificateResponse>(serviceUri, createCertificateRequest, securityHeader);
+        }
+
+        public Task<CreateDot1XConfigurationResponse> CreateDot1XConfiguration(CreateDot1XConfigurationRequest createDot1XConfigurationRequest)
+        {
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+            return doRequestAwaitResponse<CreateDot1XConfigurationRequest, CreateDot1XConfigurationResponse>(serviceUri, createDot1XConfigurationRequest, securityHeader);
+        }
+
+        public Task<CreateStorageConfigurationResponse> CreateStorageConfiguration(CreateStorageConfigurationRequest createStorageConfigurationRequest)
+        {
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+            return doRequestAwaitResponse<CreateStorageConfigurationRequest, CreateStorageConfigurationResponse>(serviceUri, createStorageConfigurationRequest, securityHeader);
+        }
+
+        public Task<CreateUsersResponse> CreateUsers(CreateUsersRequest createUsersRequest)
+        {
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+            return doRequestAwaitResponse<CreateUsersRequest, CreateUsersResponse>(serviceUri, createUsersRequest, securityHeader);
+        }
+
+        public Task<DeleteCertificatesResponse> DeleteCertificates(DeleteCertificatesRequest deleteCertificatesRequest)
+        {
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+            return doRequestAwaitResponse<DeleteCertificatesRequest, DeleteCertificatesResponse>(serviceUri, deleteCertificatesRequest, securityHeader);
+        }
+
+        public Task<DeleteDot1XConfigurationResponse> DeleteDot1XConfiguration(DeleteDot1XConfigurationRequest deleteDot1XConfigurationRequest)
+        {
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+            return doRequestAwaitResponse<DeleteDot1XConfigurationRequest, DeleteDot1XConfigurationResponse>(serviceUri, deleteDot1XConfigurationRequest, securityHeader);
+        }
+
+        public Task<DeleteGeoLocationResponse> DeleteGeoLocation(DeleteGeoLocationRequest deleteGeoLocationRequest)
+        {
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+            return doRequestAwaitResponse<DeleteGeoLocationRequest, DeleteGeoLocationResponse>(serviceUri, deleteGeoLocationRequest, securityHeader);
+        }
+
+        public Task<DeleteStorageConfigurationResponse> DeleteStorageConfiguration(DeleteStorageConfigurationRequest deleteStorageConfigurationRequest)
+        {
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+            return doRequestAwaitResponse<DeleteStorageConfigurationRequest, DeleteStorageConfigurationResponse>(serviceUri, deleteStorageConfigurationRequest, securityHeader);
+        }
+
+        public Task<DeleteUserRoleResponse> DeleteUserRole(DeleteUserRoleRequest deleteUserRoleRequest)
+        {
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+            return doRequestAwaitResponse<DeleteUserRoleRequest, DeleteUserRoleResponse>(serviceUri, deleteUserRoleRequest, securityHeader);
+        }
+
+        public Task<DeleteUsersResponse> DeleteUsers(DeleteUsersRequest deleteUsersRequest)
+        {
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+            return doRequestAwaitResponse<DeleteUsersRequest, DeleteUsersResponse>(serviceUri, deleteUsersRequest, securityHeader);
+        }
+
+        public Task<LoadCACertificatesResponse> LoadCACertificates(LoadCACertificatesRequest loadCACertificatesRequest)
+        {
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+            return doRequestAwaitResponse<LoadCACertificatesRequest, LoadCACertificatesResponse>(serviceUri, loadCACertificatesRequest, securityHeader);
+        }
+
+        public Task<LoadCertificatesResponse> LoadCertificates(LoadCertificatesRequest loadCertificatesRequest)
+        {
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+            return doRequestAwaitResponse<LoadCertificatesRequest, LoadCertificatesResponse>(serviceUri, loadCertificatesRequest, securityHeader);
+        }
+
+        public Task<LoadCertificateWithPrivateKeyResponse> LoadCertificateWithPrivateKey(LoadCertificateWithPrivateKeyRequest loadCertificateWithPrivateKeyRequest)
+        {
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+            return doRequestAwaitResponse<LoadCertificateWithPrivateKeyRequest, LoadCertificateWithPrivateKeyResponse>(serviceUri, loadCertificateWithPrivateKeyRequest, securityHeader);
+        }
+
+        public Task<RemoveIPAddressFilterResponse> RemoveIPAddressFilter(RemoveIPAddressFilterRequest removeIPAddressFilterRequest)
+        {
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+            return doRequestAwaitResponse<RemoveIPAddressFilterRequest, RemoveIPAddressFilterResponse>(serviceUri, removeIPAddressFilterRequest, securityHeader);
+        }
+
+        public Task<RemoveScopesResponse> RemoveScopes(RemoveScopesRequest removeScopesRequest)
+        {
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+            return doRequestAwaitResponse<RemoveScopesRequest, RemoveScopesResponse>(serviceUri, removeScopesRequest, securityHeader);
+        }
+
+        public Task<RestoreSystemResponse> RestoreSystem(RestoreSystemRequest restoreSystemRequest)
+        {
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+            return doRequestAwaitResponse<RestoreSystemRequest, RestoreSystemResponse>(serviceUri, restoreSystemRequest, securityHeader);
+        }
+
+        public Task<ScanAvailableDot11NetworksResponse> ScanAvailableDot11Networks(ScanAvailableDot11NetworksRequest scanAvailableDot11NetworksRequest)
+        {
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+            return doRequestAwaitResponse<ScanAvailableDot11NetworksRequest, ScanAvailableDot11NetworksResponse>(serviceUri, scanAvailableDot11NetworksRequest, securityHeader);
+        }
+
+        public Task<SendAuxiliaryCommandResponse> SendAuxiliaryCommand(SendAuxiliaryCommandRequest sendAuxiliaryCommandRequest)
+        {
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+            return doRequestAwaitResponse<SendAuxiliaryCommandRequest, SendAuxiliaryCommandResponse>(serviceUri, sendAuxiliaryCommandRequest, securityHeader);
+        }
+
+        public Task<SetAccessPolicyResponse> SetAccessPolicy(SetAccessPolicyRequest setAccessPolicyRequest)
+        {
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+            return doRequestAwaitResponse<SetAccessPolicyRequest, SetAccessPolicyResponse>(serviceUri, setAccessPolicyRequest, securityHeader);
+        }
+
+        public Task<SetAuthFailureWarningConfigurationResponse> SetAuthFailureWarningConfiguration(SetAuthFailureWarningConfigurationRequest setAuthFailureWarningConfigurationRequest)
+        {
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+            return doRequestAwaitResponse<SetAuthFailureWarningConfigurationRequest, SetAuthFailureWarningConfigurationResponse>(serviceUri, setAuthFailureWarningConfigurationRequest, securityHeader);
+        }
+
+        public Task<SetCertificatesStatusResponse> SetCertificatesStatus(SetCertificatesStatusRequest setCertificatesStatusRequest)
+        {
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+            return doRequestAwaitResponse<SetCertificatesStatusRequest, SetCertificatesStatusResponse>(serviceUri, setCertificatesStatusRequest, securityHeader);
+        }
+
+        public Task<SetClientCertificateModeResponse> SetClientCertificateMode(SetClientCertificateModeRequest setClientCertificateModeRequest)
+        {
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+            return doRequestAwaitResponse<SetClientCertificateModeRequest, SetClientCertificateModeResponse>(serviceUri, setClientCertificateModeRequest, securityHeader);
+        }
+
+        public Task<SetDiscoveryModeResponse> SetDiscoveryMode(SetDiscoveryModeRequest setDiscoveryModeRequest)
+        {
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+            return doRequestAwaitResponse<SetDiscoveryModeRequest, SetDiscoveryModeResponse>(serviceUri, setDiscoveryModeRequest, securityHeader);
+        }
+
+        public Task<SetDNSResponse> SetDNS(SetDNSRequest setDNSRequest)
+        {
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+            return doRequestAwaitResponse<SetDNSRequest, SetDNSResponse>(serviceUri, setDNSRequest, securityHeader);
+        }
+
+        public Task<SetDot1XConfigurationResponse> SetDot1XConfiguration(SetDot1XConfigurationRequest setDot1XConfigurationRequest)
+        {
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+            return doRequestAwaitResponse<SetDot1XConfigurationRequest, SetDot1XConfigurationResponse>(serviceUri, setDot1XConfigurationRequest, securityHeader);
+        }
+
+        public Task<SetDPAddressesResponse> SetDPAddresses(SetDPAddressesRequest setDPAddressesRequest)
+        {
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+            return doRequestAwaitResponse<SetDPAddressesRequest, SetDPAddressesResponse>(serviceUri, setDPAddressesRequest, securityHeader);
+        }
+
+        public Task<SetDynamicDNSResponse> SetDynamicDNS(SetDynamicDNSRequest setDynamicDNSRequest)
+        {
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+            return doRequestAwaitResponse<SetDynamicDNSRequest, SetDynamicDNSResponse>(serviceUri, setDynamicDNSRequest, securityHeader);
+        }
+
+        public Task<SetGeoLocationResponse> SetGeoLocation(SetGeoLocationRequest setGeoLocationRequest)
+        {
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+            return doRequestAwaitResponse<SetGeoLocationRequest, SetGeoLocationResponse>(serviceUri, setGeoLocationRequest, securityHeader);
+        }
+
+        public Task<SetHashingAlgorithmResponse> SetHashingAlgorithm(SetHashingAlgorithmRequest setHashingAlgorithmRequest)
+        {
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+            return doRequestAwaitResponse<SetHashingAlgorithmRequest, SetHashingAlgorithmResponse>(serviceUri, setHashingAlgorithmRequest, securityHeader);
+        }
+
+        public Task<SetHostnameResponse> SetHostname(SetHostnameRequest setHostnameRequest)
+        {
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+            return doRequestAwaitResponse<SetHostnameRequest, SetHostnameResponse>(serviceUri, setHostnameRequest, securityHeader);
+        }
+
+        public Task<SetHostnameFromDHCPResponse> SetHostnameFromDHCP(SetHostnameFromDHCPRequest setHostnameFromDHCPRequest)
+        {
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+            return doRequestAwaitResponse<SetHostnameFromDHCPRequest, SetHostnameFromDHCPResponse>(serviceUri, setHostnameFromDHCPRequest, securityHeader);
+        }
+
+        public Task<SetIPAddressFilterResponse> SetIPAddressFilter(SetIPAddressFilterRequest setIPAddressFilterRequest)
+        {
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+            return doRequestAwaitResponse<SetIPAddressFilterRequest, SetIPAddressFilterResponse>(serviceUri, setIPAddressFilterRequest, securityHeader);
+        }
+
+        public Task<SetNetworkDefaultGatewayResponse> SetNetworkDefaultGateway(SetNetworkDefaultGatewayRequest setNetworkDefaultGatewayRequest)
+        {
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+            return doRequestAwaitResponse<SetNetworkDefaultGatewayRequest, SetNetworkDefaultGatewayResponse>(serviceUri, setNetworkDefaultGatewayRequest, securityHeader);
+        }
+
+        public Task<SetNetworkInterfacesResponse> SetNetworkInterfaces(SetNetworkInterfacesRequest setNetworkInterfacesRequest)
+        {
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+            return doRequestAwaitResponse<SetNetworkInterfacesRequest, SetNetworkInterfacesResponse>(serviceUri, setNetworkInterfacesRequest, securityHeader);
+        }
+
+        public Task<SetNetworkProtocolsResponse> SetNetworkProtocols(SetNetworkProtocolsRequest setNetworkProtocolsRequest)
+        {
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+            return doRequestAwaitResponse<SetNetworkProtocolsRequest, SetNetworkProtocolsResponse>(serviceUri, setNetworkProtocolsRequest, securityHeader);
+        }
+
+        public Task<SetNTPResponse> SetNTP(SetNTPRequest setNTPRequest)
+        {
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+            return doRequestAwaitResponse<SetNTPRequest, SetNTPResponse>(serviceUri, setNTPRequest, securityHeader);
+        }
+
+        public Task<SetPasswordComplexityConfigurationResponse> SetPasswordComplexityConfiguration(SetPasswordComplexityConfigurationRequest setPasswordComplexityConfigurationRequest)
+        {
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+            return doRequestAwaitResponse<SetPasswordComplexityConfigurationRequest, SetPasswordComplexityConfigurationResponse>(serviceUri, setPasswordComplexityConfigurationRequest, securityHeader);
+        }
+
+        public Task<SetPasswordHistoryConfigurationResponse> SetPasswordHistoryConfiguration(SetPasswordHistoryConfigurationRequest setPasswordHistoryConfigurationRequest)
+        {
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+            return doRequestAwaitResponse<SetPasswordHistoryConfigurationRequest, SetPasswordHistoryConfigurationResponse>(serviceUri, setPasswordHistoryConfigurationRequest, securityHeader);
+        }
+
+        public Task<SetRelayOutputSettingsResponse> SetRelayOutputSettings(SetRelayOutputSettingsRequest setRelayOutputSettingsRequest)
+        {
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+            return doRequestAwaitResponse<SetRelayOutputSettingsRequest, SetRelayOutputSettingsResponse>(serviceUri, setRelayOutputSettingsRequest, securityHeader);
+        }
+
+        public Task<SetRelayOutputStateResponse> SetRelayOutputState(SetRelayOutputStateRequest setRelayOutputStateRequest)
+        {
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+            return doRequestAwaitResponse<SetRelayOutputStateRequest, SetRelayOutputStateResponse>(serviceUri, setRelayOutputStateRequest, securityHeader);
+        }
+
+        public Task<SetRemoteDiscoveryModeResponse> SetRemoteDiscoveryMode(SetRemoteDiscoveryModeRequest setRemoteDiscoveryModeRequest)
+        {
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+            return doRequestAwaitResponse<SetRemoteDiscoveryModeRequest, SetRemoteDiscoveryModeResponse>(serviceUri, setRemoteDiscoveryModeRequest, securityHeader);
+        }
+
+        public Task<SetRemoteUserResponse> SetRemoteUser(SetRemoteUserRequest setRemoteUserRequest)
+        {
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+            return doRequestAwaitResponse<SetRemoteUserRequest, SetRemoteUserResponse>(serviceUri, setRemoteUserRequest, securityHeader);
+        }
+
+        public Task<SetScopesResponse> SetScopes(SetScopesRequest setScopesRequest)
+        {
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+            return doRequestAwaitResponse<SetScopesRequest, SetScopesResponse>(serviceUri, setScopesRequest, securityHeader);
+        }
+
+        public Task<SetStorageConfigurationResponse> SetStorageConfiguration(SetStorageConfigurationRequest setStorageConfigurationRequest)
+        {
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+            return doRequestAwaitResponse<SetStorageConfigurationRequest, SetStorageConfigurationResponse>(serviceUri, setStorageConfigurationRequest, securityHeader);
+        }
+
+        public Task<SetSystemDateAndTimeResponse> SetSystemDateAndTime(SetSystemDateAndTimeRequest setSystemDateAndTimeRequest)
+        {
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+            return doRequestAwaitResponse<SetSystemDateAndTimeRequest, SetSystemDateAndTimeResponse>(serviceUri, setSystemDateAndTimeRequest, securityHeader);
+        }
+
+        public Task<SetSystemFactoryDefaultResponse> SetSystemFactoryDefault(SetSystemFactoryDefaultRequest setSystemFactoryDefaultRequest)
+        {
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+            return doRequestAwaitResponse<SetSystemFactoryDefaultRequest, SetSystemFactoryDefaultResponse>(serviceUri, setSystemFactoryDefaultRequest, securityHeader);
+        }
+
+        public Task<SetUserResponse> SetUser(SetUserRequest setUserRequest)
+        {
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+            return doRequestAwaitResponse<SetUserRequest, SetUserResponse>(serviceUri, setUserRequest, securityHeader);
+        }
+
+        public Task<SetUserRoleResponse> SetUserRole(SetUserRoleRequest setUserRoleRequest)
+        {
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+            return doRequestAwaitResponse<SetUserRoleRequest, SetUserRoleResponse>(serviceUri, setUserRoleRequest, securityHeader);
+        }
+
+        public Task<SetZeroConfigurationResponse> SetZeroConfiguration(SetZeroConfigurationRequest setZeroConfigurationRequest)
+        {
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+            return doRequestAwaitResponse<SetZeroConfigurationRequest, SetZeroConfigurationResponse>(serviceUri, setZeroConfigurationRequest, securityHeader);
+        }
+
+        public Task<StartFirmwareUpgradeResponse> StartFirmwareUpgrade(StartFirmwareUpgradeRequest startFirmwareUpgradeRequest)
+        {
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+            return doRequestAwaitResponse<StartFirmwareUpgradeRequest, StartFirmwareUpgradeResponse>(serviceUri, startFirmwareUpgradeRequest, securityHeader);
+        }
+
+        public Task<StartSystemRestoreResponse> StartSystemRestore(StartSystemRestoreRequest startSystemRestoreRequest)
+        {
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+            return doRequestAwaitResponse<StartSystemRestoreRequest, StartSystemRestoreResponse>(serviceUri, startSystemRestoreRequest, securityHeader);
+        }
+
+        public Task<SystemRebootResponse> SystemReboot(SystemRebootRequest systemRebootRequest)
+        {
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+            return doRequestAwaitResponse<SystemRebootRequest, SystemRebootResponse>(serviceUri, systemRebootRequest, securityHeader);
+        }
+
+        public Task<UpgradeFirmwareResponse> UpgradeFirmware(UpgradeFirmwareRequest upgradeFirmwareRequest)
+        {
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+            return doRequestAwaitResponse<UpgradeFirmwareRequest, UpgradeFirmwareResponse>(serviceUri, upgradeFirmwareRequest, securityHeader);
+        }
+
+        public Task<UpgradeSystemFirmwareResponse> UpgradeSystemFirmware(UpgradeSystemFirmwareRequest upgradeSystemFirmwareRequest)
+        {
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+            return doRequestAwaitResponse<UpgradeSystemFirmwareRequest, UpgradeSystemFirmwareResponse>(serviceUri, upgradeSystemFirmwareRequest, securityHeader);
+        }
     }
 }
 
