@@ -22,6 +22,56 @@ Built for modern .NET, lightweight, and easy to extend.
 
 ---
 
+### 📘 Short Example — Get RTSP Stream + PTZ Control
+
+```csharp
+// 1. Get device information
+var deviceClient = new DeviceClient
+{
+  //SoapClient = new SoapClient(new YourHttpClientFactory()),  <== Optional: Use a custom HttpClientFactory if needed
+    ServiceUri = new Uri("http://camera-ip/onvif/device_service"),
+    User = "username",
+    Password = "password"
+};
+var deviceInfo = await deviceClient.GetDeviceInformation();
+
+// 2. Create Media client
+var mediaClient = new MediaClient
+{
+    ServiceUri = new Uri("http://camera-ip/onvif/media_service"),
+    User = "username",
+    Password = "password"
+};
+
+// 3. Get available media profiles
+var profilesResponse = await mediaClient.GetProfiles();
+var profile = profilesResponse.Profiles.First();
+
+// 4. Get the RTSP stream URI
+var streamSetup = new StreamSetup
+{
+    Stream = StreamType.RTPUnicast,
+    Transport = new Transport { Protocol = TransportProtocol.RTSP }
+};
+var streamUriResponse = await mediaClient.GetStreamUri(streamSetup, profile.Token);
+Console.WriteLine($"RTSP URI: {streamUriResponse.MediaUri.Uri}");
+
+// 5. Use PTZ client to pan and zoom the camera
+var ptzClient = new PtzClient
+{
+    ServiceUri = new Uri("http://camera-ip/onvif/ptz_service"),
+    User = "username",
+    Password = "password"
+};
+var velocity = new PTZSpeed
+{
+    PanTilt = new Vector2D { X = 0.5f, Y = 0 }, // pan right
+    Zoom = new Vector1D { X = 0.2f }            // zoom in
+};
+await ptzClient.ContinuousMove(profile.Token, velocity);
+
+```
+---
 ## 💡 Why This Library Exists
 I couldn’t find a modern, lightweight ONVIF library for .NET that didn’t rely on WCF.
 Most ONVIF libraries rely on WCF bindings generated via `svcutil` or `dotnet-svcutil`.  
