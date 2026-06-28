@@ -602,7 +602,7 @@ namespace OnvifTests
         {
             MediaTestingClient ic = new MediaTestingClient
             {
-                ServiceUri = new Uri("http://10.5.23.102:80/onvif/media_service"),
+                ServiceUri = new Uri("http://192.168.3.19:8000/onvif/media_service"),
                 User = "root",
                 Password = "Q1w2e3r4",
                 SoapClient = new SoapClient()
