@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 
 using OnvifStandard.Common;
@@ -28,6 +28,19 @@ namespace OnvifStandard.Imaging
             return doRequestAwaitResponse<GetImagingSettingsRequest, GetImagingSettingsResponse>(serviceUri, request, securityHeader);
         }
 
+        public Task<SetImagingSettingsResponse> SetImagingSettings(string videoSourceToken, ImagingSettings20 imagingSettings, bool? forcePersistence = null)
+        {
+            SetImagingSettingsRequest request = new SetImagingSettingsRequest
+            {
+                VideoSourceToken = videoSourceToken,
+                ImagingSettings = imagingSettings,
+                ForcePersistence = forcePersistence
+            };
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+
+            return doRequestAwaitResponse<SetImagingSettingsRequest, SetImagingSettingsResponse>(serviceUri, request, securityHeader);
+        }
+
         public Task<GetOptionsResponse> GetOptions(string videoSourceToken)
         {
             GetOptionsRequest request = new GetOptionsRequest
@@ -48,6 +61,29 @@ namespace OnvifStandard.Imaging
             SoapSecurityHeader securityHeader = getSecurityHeader();
 
             return doRequestAwaitResponse<GetMoveOptionsRequest, GetMoveOptionsResponse>(serviceUri, request, securityHeader);
+        }
+
+        public Task<MoveResponse> Move(string videoSourceToken, FocusMove focus)
+        {
+            MoveRequest request = new MoveRequest
+            {
+                VideoSourceToken = videoSourceToken,
+                Focus = focus
+            };
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+
+            return doRequestAwaitResponse<MoveRequest, MoveResponse>(serviceUri, request, securityHeader);
+        }
+
+        public Task<StopResponse> Stop(string videoSourceToken)
+        {
+            StopRequest request = new StopRequest
+            {
+                VideoSourceToken = videoSourceToken
+            };
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+
+            return doRequestAwaitResponse<StopRequest, StopResponse>(serviceUri, request, securityHeader);
         }
 
         public Task<GetStatusResponse> GetStatus(string videoSourceToken)
@@ -81,6 +117,18 @@ namespace OnvifStandard.Imaging
             SoapSecurityHeader securityHeader = getSecurityHeader();
 
             return doRequestAwaitResponse<GetCurrentPresetRequest, GetCurrentPresetResponse>(serviceUri, request, securityHeader);
+        }
+
+        public Task<SetCurrentPresetResponse> SetCurrentPreset(string videoSourceToken, string presetToken)
+        {
+            SetCurrentPresetRequest request = new SetCurrentPresetRequest
+            {
+                VideoSourceToken = videoSourceToken,
+                PresetToken = presetToken
+            };
+            SoapSecurityHeader securityHeader = getSecurityHeader();
+
+            return doRequestAwaitResponse<SetCurrentPresetRequest, SetCurrentPresetResponse>(serviceUri, request, securityHeader);
         }
     }
 }
