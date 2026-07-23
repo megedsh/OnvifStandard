@@ -2,6 +2,8 @@ using System.Xml;
 using System;
 using System.Xml.Serialization;
 
+using OnvifStandard.Common;
+
 namespace OnvifStandard.Device
 {
     [XmlRoot("GetServices", Namespace = "http://www.onvif.org/ver10/device/wsdl")]
@@ -1278,11 +1280,116 @@ namespace OnvifStandard.Device
 
     public class LocationEntity
     {
+        [XmlElement("GeoLocation", Namespace = "http://www.onvif.org/ver10/schema")]
+        public GeoLocation GeoLocation { get; set; }
+
+        [XmlElement("GeoOrientation", Namespace = "http://www.onvif.org/ver10/schema")]
+        public GeoOrientation GeoOrientation { get; set; }
+
+        [XmlElement("LocalLocation", Namespace = "http://www.onvif.org/ver10/schema")]
+        public LocalLocation LocalLocation { get; set; }
+
+        [XmlElement("LocalOrientation", Namespace = "http://www.onvif.org/ver10/schema")]
+        public LocalOrientation LocalOrientation { get; set; }
+
+        [XmlAttribute("Entity")]
+        public string Entity { get; set; }
+
+        [XmlAttribute("Token")]
+        public string Token { get; set; }
+
+        [XmlAttribute("Fixed")]
+        public bool Fixed { get; set; }
+
+        [XmlIgnore]
+        public bool FixedSpecified { get; set; }
+
+        [XmlAttribute("GeoSource")]
+        public string GeoSource { get; set; }
+
+        [XmlAttribute("AutoGeo")]
+        public bool AutoGeo { get; set; }
+
+        [XmlIgnore]
+        public bool AutoGeoSpecified { get; set; }
+
         [XmlAnyElement]
         public XmlElement[] Any { get; set; }
 
         [XmlAnyAttribute]
         public XmlAttribute[] AnyAttribute { get; set; }
+    }
+
+    public class GeoOrientation
+    {
+        [XmlAttribute("roll")]
+        public float Roll { get; set; }
+
+        [XmlIgnore]
+        public bool RollSpecified { get; set; }
+
+        [XmlAttribute("pitch")]
+        public float Pitch { get; set; }
+
+        [XmlIgnore]
+        public bool PitchSpecified { get; set; }
+
+        [XmlAttribute("yaw")]
+        public float Yaw { get; set; }
+
+        [XmlIgnore]
+        public bool YawSpecified { get; set; }
+
+        [XmlAnyElement]
+        public XmlElement[] Any { get; set; }
+    }
+
+    public class LocalLocation
+    {
+        [XmlAttribute("x")]
+        public float X { get; set; }
+
+        [XmlIgnore]
+        public bool XSpecified { get; set; }
+
+        [XmlAttribute("y")]
+        public float Y { get; set; }
+
+        [XmlIgnore]
+        public bool YSpecified { get; set; }
+
+        [XmlAttribute("z")]
+        public float Z { get; set; }
+
+        [XmlIgnore]
+        public bool ZSpecified { get; set; }
+
+        [XmlAnyElement]
+        public XmlElement[] Any { get; set; }
+    }
+
+    public class LocalOrientation
+    {
+        [XmlAttribute("pan")]
+        public float Pan { get; set; }
+
+        [XmlIgnore]
+        public bool PanSpecified { get; set; }
+
+        [XmlAttribute("tilt")]
+        public float Tilt { get; set; }
+
+        [XmlIgnore]
+        public bool TiltSpecified { get; set; }
+
+        [XmlAttribute("roll")]
+        public float Roll { get; set; }
+
+        [XmlIgnore]
+        public bool RollSpecified { get; set; }
+
+        [XmlAnyElement]
+        public XmlElement[] Any { get; set; }
     }
 
     [XmlRoot("GetCertificates", Namespace = "http://www.onvif.org/ver10/device/wsdl")]

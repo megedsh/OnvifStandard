@@ -1,6 +1,8 @@
 using System.Xml;
 using System.Xml.Serialization;
 
+using OnvifStandard.Common;
+
 namespace OnvifStandard.Media
 {
     [XmlRoot("GetServiceCapabilities", Namespace = "http://www.onvif.org/ver10/media/wsdl")]
@@ -130,7 +132,7 @@ namespace OnvifStandard.Media
     public class CreateProfileResponse
     {
         [XmlElement("Profile", Namespace = "http://www.onvif.org/ver10/media/wsdl")]
-        public MediaProfile Profile { get; set; }
+        public Profile Profile { get; set; }
     }
 
     [XmlRoot("GetProfile", Namespace = "http://www.onvif.org/ver10/media/wsdl")]
@@ -143,7 +145,7 @@ namespace OnvifStandard.Media
     public class GetProfileResponse
     {
         [XmlElement("Profile", Namespace = "http://www.onvif.org/ver10/media/wsdl")]
-        public MediaProfile Profile { get; set; }
+        public Profile Profile { get; set; }
     }
 
     [XmlRoot("GetProfiles", Namespace = "http://www.onvif.org/ver10/media/wsdl")]
@@ -154,7 +156,7 @@ namespace OnvifStandard.Media
     public class GetProfilesResponse
     {
         [XmlElement("Profiles", Namespace = "http://www.onvif.org/ver10/media/wsdl")]
-        public MediaProfile[] Profiles { get; set; }
+        public Profile[] Profiles { get; set; }
     }
 
     [XmlRoot("DeleteProfile", Namespace = "http://www.onvif.org/ver10/media/wsdl")]
@@ -925,18 +927,6 @@ namespace OnvifStandard.Media
         public XmlAttribute[] AnyAttribute { get; set; }
     }
 
-    public class ConfigurationEntity
-    {
-        [XmlElement("Name", Namespace = "http://www.onvif.org/ver10/schema")]
-        public string Name { get; set; }
-
-        [XmlElement("UseCount", Namespace = "http://www.onvif.org/ver10/schema")]
-        public int UseCount { get; set; }
-
-        [XmlAttribute("token")]
-        public string Token { get; set; }
-    }
-
     public class VideoSource : DeviceEntity
     {
         [XmlElement("Framerate", Namespace = "http://www.onvif.org/ver10/schema")]
@@ -967,7 +957,7 @@ namespace OnvifStandard.Media
         public XmlElement[] Any { get; set; }
     }
 
-    public class MediaProfile
+    public class Profile
     {
         [XmlElement("Name", Namespace = "http://www.onvif.org/ver10/schema")]
         public string Name { get; set; }
@@ -987,6 +977,9 @@ namespace OnvifStandard.Media
         [XmlElement("VideoAnalyticsConfiguration", Namespace = "http://www.onvif.org/ver10/schema")]
         public VideoAnalyticsConfiguration VideoAnalyticsConfiguration { get; set; }
 
+        [XmlElement("PTZConfiguration", Namespace = "http://www.onvif.org/ver10/schema")]
+        public OnvifStandard.Ptz.PTZConfiguration PTZConfiguration { get; set; }
+
         [XmlElement("MetadataConfiguration", Namespace = "http://www.onvif.org/ver10/schema")]
         public MetadataConfiguration MetadataConfiguration { get; set; }
 
@@ -997,7 +990,10 @@ namespace OnvifStandard.Media
         public string Token { get; set; }
 
         [XmlAttribute("fixed")]
-        public string Fixed { get; set; }
+        public bool Fixed { get; set; }
+
+        [XmlIgnore]
+        public bool FixedSpecified { get; set; }
 
         [XmlAnyAttribute]
         public XmlAttribute[] AnyAttribute { get; set; }
@@ -1013,6 +1009,15 @@ namespace OnvifStandard.Media
 
         [XmlElement("AudioDecoderConfiguration", Namespace = "http://www.onvif.org/ver10/schema")]
         public AudioDecoderConfiguration AudioDecoderConfiguration { get; set; }
+
+        [XmlElement("Extension", Namespace = "http://www.onvif.org/ver10/schema")]
+        public ProfileExtension2 Extension { get; set; }
+    }
+
+    public class ProfileExtension2
+    {
+        [XmlAnyElement]
+        public XmlElement[] Any { get; set; }
     }
 
     public class VideoSourceConfiguration : ConfigurationEntity

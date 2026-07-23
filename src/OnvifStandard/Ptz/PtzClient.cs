@@ -1,5 +1,7 @@
 ﻿using System.Threading.Tasks;
 
+using OnvifStandard.Common;
+
 namespace OnvifStandard.Ptz
 {
     public class PtzClient : OnvifSoapClientBase

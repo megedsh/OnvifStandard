@@ -1,5 +1,6 @@
 using OnvifStandard.Media;
 using OnvifStandard.Ptz;
+using OnvifStandard.Common;
 
 using SoapHttpClient;
 
@@ -209,7 +210,7 @@ namespace OnvifTests
             string profileToken = await getProfileToken();
             try
             {
-                GeoLocation target = new GeoLocation { Latitude = 0, Longitude = 0, Altitude = 0 };
+                GeoLocation target = new GeoLocation { Lat = 0, Lon = 0, Elevation = 0 };
                 Assert.That(await pc.GeoMove(profileToken, target), Is.Not.Null);
             }
             catch (Exception ex)

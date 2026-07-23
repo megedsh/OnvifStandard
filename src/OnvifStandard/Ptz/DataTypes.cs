@@ -1,5 +1,8 @@
+using System;
 using System.Xml;
 using System.Xml.Serialization;
+
+using OnvifStandard.Common;
 
 namespace OnvifStandard.Ptz
 {
@@ -722,7 +725,7 @@ namespace OnvifStandard.Ptz
         public string Error { get; set; }
 
         [XmlElement("UtcTime", Namespace = "http://www.onvif.org/ver10/schema")]
-        public string UtcTime { get; set; }
+        public DateTime UtcTime { get; set; }
 
         [XmlAnyElement]
         public XmlElement[] Any { get; set; }
@@ -896,24 +899,6 @@ namespace OnvifStandard.Ptz
         public XmlAttribute[] AnyAttribute { get; set; }
     }
 
-    public class GeoLocation
-    {
-        [XmlElement("Latitude", Namespace = "http://www.onvif.org/ver10/schema")]
-        public double? Latitude { get; set; }
-
-        [XmlElement("Longitude", Namespace = "http://www.onvif.org/ver10/schema")]
-        public double? Longitude { get; set; }
-
-        [XmlElement("Altitude", Namespace = "http://www.onvif.org/ver10/schema")]
-        public double? Altitude { get; set; }
-
-        [XmlAnyElement]
-        public XmlElement[] Any { get; set; }
-
-        [XmlAnyAttribute]
-        public XmlAttribute[] AnyAttribute { get; set; }
-    }
-
     [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public enum PTZPresetTourOperation
     {
@@ -925,18 +910,6 @@ namespace OnvifStandard.Ptz
 
     public class DeviceEntity
     {
-        [XmlAttribute("token")]
-        public string Token { get; set; }
-    }
-
-    public class ConfigurationEntity
-    {
-        [XmlElement("Name", Namespace = "http://www.onvif.org/ver10/schema")]
-        public string Name { get; set; }
-
-        [XmlElement("UseCount", Namespace = "http://www.onvif.org/ver10/schema")]
-        public int UseCount { get; set; }
-
         [XmlAttribute("token")]
         public string Token { get; set; }
     }
