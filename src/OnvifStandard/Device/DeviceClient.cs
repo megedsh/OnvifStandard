@@ -32,7 +32,7 @@ namespace OnvifStandard.Device
         {
             GetSystemDateAndTimeRequest getSystemDateAndTimeRequest = new GetSystemDateAndTimeRequest();
 
-            return send<GetSystemDateAndTimeRequest, GetSystemDateAndTimeResponse>(getSystemDateAndTimeRequest);
+            return send<GetSystemDateAndTimeRequest, GetSystemDateAndTimeResponse>(getSystemDateAndTimeRequest, true);
         }
 
         public Task<GetSystemLogResponse> GetSystemLog(SystemLogType logType)
@@ -473,5 +473,6 @@ namespace OnvifStandard.Device
         public Task<UpgradeFirmwareResponse> UpgradeFirmware(UpgradeFirmwareRequest upgradeFirmwareRequest) => send<UpgradeFirmwareRequest, UpgradeFirmwareResponse>(upgradeFirmwareRequest);
 
         public Task<UpgradeSystemFirmwareResponse> UpgradeSystemFirmware(UpgradeSystemFirmwareRequest upgradeSystemFirmwareRequest) => send<UpgradeSystemFirmwareRequest, UpgradeSystemFirmwareResponse>(upgradeSystemFirmwareRequest);
+
     }
 }

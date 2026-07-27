@@ -20,6 +20,13 @@ namespace OnvifStandard
         public string Password { get; set; }
         public SoapVersion SoapVersion { get; set; } = SoapVersion.Soap12;
 
+        public TimeSpan DeviceTimeShift { get; set; }
+
+        public void SetTimeShift(TimeSpan deviceTimeShift)
+        {
+            DeviceTimeShift = deviceTimeShift;
+        }
+
         protected virtual async Task<TRes> doRequestAwaitResponse<TReq, TRes>(Uri                uri,
                                                                               TReq               request,
                                                                               SoapSecurityHeader securityHeader,
@@ -64,13 +71,13 @@ namespace OnvifStandard
                 throw new InvalidOperationException($"Failed to deserialize SOAP response into type {typeof(SoapEnvelope).Name}. Response content: {contentBody}", e);
             }
         }
-        protected virtual Task<TRes> send<TReq, TRes>(TReq request)
+
+        protected virtual Task<TRes> send<TReq, TRes>(TReq request, bool disableSecurityHeader = false)
         {
-            SoapSecurityHeader securityHeader = getSecurityHeader();
-            return doRequestAwaitResponse<TReq, TRes>(serviceUri, request, securityHeader);
+            return doRequestAwaitResponse<TReq, TRes>(serviceUri, request, disableSecurityHeader?null:getSecurityHeader());
         }
 
-        protected virtual SoapSecurityHeader getSecurityHeader() => SoapSecurityHeader.Create(User, Password);
+        protected virtual SoapSecurityHeader getSecurityHeader() => SoapSecurityHeader.Create(User, Password, DeviceTimeShift);
 
         private Uri serviceUri => ServiceUri ?? throw new InvalidOperationException("ServiceUri must be set.");
     }

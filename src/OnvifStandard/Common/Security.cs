@@ -17,9 +17,9 @@ namespace OnvifStandard.Common
                     Namespace = "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd")]
         public UsernameToken UsernameToken { get; set; }
 
-        public static SoapSecurityHeader Create(string username, string password)
+        public static SoapSecurityHeader Create(string username, string password, TimeSpan deviceTimeShift)
         {
-            UsernameToken token = UsernameToken.Create(username, password);
+            UsernameToken token = UsernameToken.Create(username, password, deviceTimeShift);
             return new SoapSecurityHeader
             {
                 UsernameToken = token
@@ -62,12 +62,12 @@ namespace OnvifStandard.Common
                     Namespace = "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd")]
         public string Created { get; set; }
 
-        public static UsernameToken Create(string username, string password)
+        public static UsernameToken Create(string username, string password, TimeSpan deviceTimeShift)
         {
             byte[] nonceBytes = new byte[16];
             RandomNumberGenerator.Create().GetBytes(nonceBytes);
 
-            string created = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss.fffZ");
+            string created = DateTime.UtcNow.Add(deviceTimeShift).ToString("yyyy-MM-ddTHH:mm:ss.fffZ");
 
             // PasswordDigest = Base64( SHA1( nonceBytes + created + password ) )
             byte[] createdBytes = Encoding.UTF8.GetBytes(created);
