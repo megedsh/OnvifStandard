@@ -26,26 +26,30 @@ Built for modern .NET, lightweight, and easy to extend.
 ### 📘 Short Example — Get RTSP Stream + PTZ Control
 
 ```csharp
-// 1. Get device information
-var deviceClient = new DeviceClient
-{
-  //SoapClient = new SoapClient(new YourHttpClientFactory()),  <== Optional: Use a custom HttpClientFactory if needed
-    ServiceUri = new Uri("http://camera-ip/onvif/device_service"),
-    User = "username",
-    Password = "password"
-};
-var deviceInfo = await deviceClient.GetDeviceInformation();
+using OnvifStandard;
+using OnvifStandard.Media;
+using OnvifStandard.Ptz;
 
-// 2. Create Media client
-var mediaClient = new MediaClient
-{
-    ServiceUri = new Uri("http://camera-ip/onvif/media_service"),
-    User = "username",
-    Password = "password"
-};
+// 1. Connect to the device. Init synchronizes device time, reads capabilities,
+//    and creates clients for the services advertised by the device.
+var device = new OnvifDevice(
+    new Uri("http://camera-ip/onvif/device_service"),
+    "username",
+    "password");
 
-// 3. Get available media profiles
-var profilesResponse = await mediaClient.GetProfiles();
+await device.Init();
+
+// 2. Use the initialized Device client.
+var deviceInfo = await device.DeviceClient.GetDeviceInformation();
+Console.WriteLine($"{deviceInfo.Manufacturer} {deviceInfo.Model}");
+
+// 3. Get an available media profile.
+if (!device.MediaAvailable)
+{
+    throw new InvalidOperationException("The device does not advertise the Media service.");
+}
+
+var profilesResponse = await device.MediaClient.GetProfiles();
 var profile = profilesResponse.Profiles.First();
 
 // 4. Get the RTSP stream URI
@@ -54,22 +58,20 @@ var streamSetup = new StreamSetup
     Stream = StreamType.RTPUnicast,
     Transport = new Transport { Protocol = TransportProtocol.RTSP }
 };
-var streamUriResponse = await mediaClient.GetStreamUri(streamSetup, profile.Token);
+var streamUriResponse = await device.MediaClient.GetStreamUri(streamSetup, profile.Token);
 Console.WriteLine($"RTSP URI: {streamUriResponse.MediaUri.Uri}");
 
-// 5. Use PTZ client to pan and zoom the camera
-var ptzClient = new PtzClient
+// 5. Use the initialized PTZ client when the service is available.
+if (device.PtzAvailable)
 {
-    ServiceUri = new Uri("http://camera-ip/onvif/ptz_service"),
-    User = "username",
-    Password = "password"
-};
-var velocity = new PTZSpeed
-{
-    PanTilt = new Vector2D { X = 0.5f, Y = 0 }, // pan right
-    Zoom = new Vector1D { X = 0.2f }            // zoom in
-};
-await ptzClient.ContinuousMove(profile.Token, velocity);
+    var velocity = new PTZSpeed
+    {
+        PanTilt = new Vector2D { X = 0.5f, Y = 0 }, // pan right
+        Zoom = new Vector1D { X = 0.2f }            // zoom in
+    };
+
+    await device.PtzClient.ContinuousMove(profile.Token, velocity);
+}
 
 ```
 ---
