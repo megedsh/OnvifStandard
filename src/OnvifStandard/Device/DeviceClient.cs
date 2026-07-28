@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 
 namespace OnvifStandard.Device
 {
-    public class DeviceClient : OnvifSoapClientBase
+    public class DeviceClient : OnvifSoapClientBase, IDeviceClient
     {
         public Task<GetServicesResponse> GetServices(bool includeCapability)
         {
@@ -473,6 +473,5 @@ namespace OnvifStandard.Device
         public Task<UpgradeFirmwareResponse> UpgradeFirmware(UpgradeFirmwareRequest upgradeFirmwareRequest) => send<UpgradeFirmwareRequest, UpgradeFirmwareResponse>(upgradeFirmwareRequest);
 
         public Task<UpgradeSystemFirmwareResponse> UpgradeSystemFirmware(UpgradeSystemFirmwareRequest upgradeSystemFirmwareRequest) => send<UpgradeSystemFirmwareRequest, UpgradeSystemFirmwareResponse>(upgradeSystemFirmwareRequest);
-
     }
 }

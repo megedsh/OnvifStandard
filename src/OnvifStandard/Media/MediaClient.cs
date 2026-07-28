@@ -2,7 +2,7 @@
 
 namespace OnvifStandard.Media
 {
-    public class MediaClient : OnvifSoapClientBase
+    public class MediaClient : OnvifSoapClientBase, IMediaClient
     {
         public Task<GetServiceCapabilitiesResponse> GetServiceCapabilities() => send<GetServiceCapabilitiesRequest, GetServiceCapabilitiesResponse>(new GetServiceCapabilitiesRequest());
         public Task<GetVideoSourcesResponse>        GetVideoSources()        => send<GetVideoSourcesRequest, GetVideoSourcesResponse>(new GetVideoSourcesRequest());

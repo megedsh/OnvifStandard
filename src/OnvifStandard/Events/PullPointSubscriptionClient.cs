@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace OnvifStandard.Events
 {
-    public class PullPointSubscriptionClient : OnvifSoapClientBase
+    public class PullPointSubscriptionClient : OnvifSoapClientBase, IPullPointSubscriptionClient
     {
         public Task<PullMessagesResponse> PullMessages(string timeout, int messageLimit) =>
             send<PullMessagesRequest, PullMessagesResponse>(new PullMessagesRequest

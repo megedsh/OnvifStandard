@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 
 namespace OnvifStandard.Imaging
 {
-    public class ImagingClient : OnvifSoapClientBase
+    public class ImagingClient : OnvifSoapClientBase, IImagingClient
     {
         public Task<GetServiceCapabilitiesResponse> GetServiceCapabilities() => send<GetServiceCapabilitiesRequest, GetServiceCapabilitiesResponse>(new GetServiceCapabilitiesRequest());
 

@@ -11,7 +11,17 @@ using SoapHttpClient.Enums;
 
 namespace OnvifStandard
 {
-    public abstract class OnvifSoapClientBase
+    public interface IOnvifSoapClient
+    {
+        SoapClient SoapClient { get; set; } 
+        Uri ServiceUri { get; set; }
+        string User { get; set; }
+        string Password { get; set; }
+        SoapVersion SoapVersion { get; set; } 
+        TimeSpan DeviceTimeShift { get; set; }
+        void SetTimeShift(TimeSpan deviceTimeShift);
+    }
+    public abstract class OnvifSoapClientBase : IOnvifSoapClient
     {
         private readonly XmlSerializer m_envelopeSerializer = new XmlSerializer(typeof(SoapEnvelope));
         public SoapClient SoapClient { get; set; } = new SoapClient();

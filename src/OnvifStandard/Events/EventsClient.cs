@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 
 namespace OnvifStandard.Events
 {
-    public class EventsClient : OnvifSoapClientBase
+    public class EventsClient : OnvifSoapClientBase, IEventsClient
     {
         public Task<GetServiceCapabilitiesResponse> GetServiceCapabilities() => send<GetServiceCapabilitiesRequest, GetServiceCapabilitiesResponse>(new GetServiceCapabilitiesRequest());
 

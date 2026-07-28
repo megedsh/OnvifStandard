@@ -4,7 +4,7 @@ using OnvifStandard.Common;
 
 namespace OnvifStandard.Ptz
 {
-    public class PtzClient : OnvifSoapClientBase
+    public class PtzClient : OnvifSoapClientBase, IPtzClient
     {
         public Task<GetServiceCapabilitiesResponse> GetServiceCapabilities() => send<GetServiceCapabilitiesRequest, GetServiceCapabilitiesResponse>(new GetServiceCapabilitiesRequest());
         public Task<GetNodesResponse>               GetNodes()               => send<GetNodesRequest, GetNodesResponse>(new GetNodesRequest());
