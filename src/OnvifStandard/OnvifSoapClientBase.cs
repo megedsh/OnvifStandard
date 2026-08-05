@@ -24,7 +24,7 @@ namespace OnvifStandard
     public abstract class OnvifSoapClientBase : IOnvifSoapClient
     {
         private readonly XmlSerializer m_envelopeSerializer = new XmlSerializer(typeof(SoapEnvelope));
-        public SoapClient SoapClient { get; set; } = new SoapClient();
+        public SoapClient SoapClient { get; set; } = new SoapClient(new DefaultSoapHttpClientFactory());
         public Uri ServiceUri { get; set; }
         public string User { get; set; }
         public string Password { get; set; }

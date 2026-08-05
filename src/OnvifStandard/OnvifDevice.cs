@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 using OnvifStandard.Device;
@@ -6,12 +7,15 @@ using OnvifStandard.Imaging;
 using OnvifStandard.Media;
 using OnvifStandard.Ptz;
 
+using SoapHttpClient;
+
 using Capabilities = OnvifStandard.Device.Capabilities;
 
 namespace OnvifStandard
 {
     public class OnvifDevice
     {
+        public IHttpClientFactory HttpClientFactory { get; }
         private readonly string m_user;
         private readonly string m_password;
         private readonly Uri    m_uri;
@@ -26,12 +30,16 @@ namespace OnvifStandard
         public bool MediaAvailable => MediaClient != null;
         public bool ImagingClientAvailable => ImagingClient != null;
 
-        public OnvifDevice(string host, string user, string password) : this(new Uri($"http://{host}/onvif/device_service"), user, password)
+        public OnvifDevice(string host,
+                           string user,
+                           string password,
+                           IHttpClientFactory httpClientFactory = null) : this(new Uri($"http://{host}/onvif/device_service"), user, password,httpClientFactory)
         {
         }
 
-        public OnvifDevice(Uri uri, string user, string password)
+        public OnvifDevice(Uri uri, string user, string password, IHttpClientFactory httpClientFactory = null)
         {
+            HttpClientFactory = httpClientFactory?? new DefaultSoapHttpClientFactory();
             m_uri = uri;
             m_user = user;
             m_password = password;
@@ -43,7 +51,8 @@ namespace OnvifStandard
             {
                 ServiceUri = m_uri,
                 User = m_user,
-                Password = m_password
+                Password = m_password,
+                SoapClient = new SoapClient(HttpClientFactory)
             };
 
             GetSystemDateAndTimeResponse sysDateTime = await DeviceClient.GetSystemDateAndTime();
@@ -65,7 +74,8 @@ namespace OnvifStandard
                     ServiceUri = new Uri(DeviceCapabilities.PTZ.XAddr),
                     User = m_user,
                     Password = m_password,
-                    DeviceTimeShift = DeviceTimeShift
+                    DeviceTimeShift = DeviceTimeShift,
+                    SoapClient= new SoapClient(HttpClientFactory)
                 };
             }
 
@@ -76,7 +86,8 @@ namespace OnvifStandard
                     ServiceUri = new Uri(DeviceCapabilities.Media.XAddr),
                     User = m_user,
                     Password = m_password,
-                    DeviceTimeShift = DeviceTimeShift
+                    DeviceTimeShift = DeviceTimeShift,
+                    SoapClient= new SoapClient(HttpClientFactory)
                 };
             }
 
@@ -87,7 +98,8 @@ namespace OnvifStandard
                     ServiceUri = new Uri(DeviceCapabilities.Imaging.XAddr),
                     User = m_user,
                     Password = m_password,
-                    DeviceTimeShift = DeviceTimeShift
+                    DeviceTimeShift = DeviceTimeShift,
+                    SoapClient= new SoapClient(HttpClientFactory)
                 };
             }
         }
@@ -96,7 +108,21 @@ namespace OnvifStandard
         {
             try
             {
-                GetProfilesResponse _ = await MediaClient.GetProfiles().ConfigureAwait(false);
+                _ = await DeviceClient.GetSystemDateAndTime().ConfigureAwait(false);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                exception?.Invoke(ex);
+                return false;
+            }
+        }
+
+        public async Task<bool> TestConnectivityAndAuthentication(Action<Exception> exception = null)
+        {
+            try
+            {
+                _ = await DeviceClient.GetCapabilities([CapabilityCategory.Device]).ConfigureAwait(false);
                 return true;
             }
             catch (Exception ex)
